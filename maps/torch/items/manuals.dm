@@ -45,7 +45,7 @@
 
 /obj/item/weapon/book/manual/sol_sop
 	name = "Standard Operating Procedure"
-	desc = "SOP aboard the VFI Sabbath."
+	desc = "SOP aboard the SEV Torch."
 	icon_state = "booksolregs"
 	author = "The Sol Central Government"
 	title = "Standard Operating Procedure"
@@ -81,9 +81,9 @@
 	<h3>NANOTRASEN RESEARCH DIVISION</h3>
 	<img src = ntlogo.png>
 	</center>
-	<b>FROM:</b> Hieronimus Blackstone, Overseer of Sabbath Cooperation Project<br>
-	<b>TO:</b> Research Director of VFI Sabbath branch<br>
-	<b>CC:</b> Liason with SCG services aboard VFI Sabbath<br>
+	<b>FROM:</b> Hieronimus Blackstone, Overseer of Torch Cooperation Project<br>
+	<b>TO:</b> Research Director of SEV Torch branch<br>
+	<b>CC:</b> Liason with SCG services aboard SEV Torch<br>
 	<b>SUBJECT:</b> RE: Testing Materials<br>
 	<hr>
 	We have reviewed your request, and would like to make an addition to the list of needed materials.<br>
@@ -106,7 +106,7 @@
 	<img src = sollogo.png>
 	</center>
 	<b>FROM:</b> ADM William Lau<br>
-	<b>TO:</b> Commanding Officer of VFI Sabbath<br>
+	<b>TO:</b> Commanding Officer of SEV Torch<br>
 	<b>SUBJECT:</b> Standing Orders<br>
 	<hr>
 	Captain.<br>
@@ -137,7 +137,7 @@
 
 /obj/item/weapon/folder/envelope/rep
 	desc = "A thick envelope. The SCG crest is stamped in the corner, along with 'TOP SECRET - UMBRA'."
-
+	
 /obj/item/weapon/folder/envelope/rep/Initialize()
 	. = ..()
 	new/obj/item/weapon/paper/umbra(src)
@@ -150,14 +150,14 @@
 	<img src = sollogo.png>
 	</center>
 	<b>FROM:</b> Johnathan Smitherson, Special Aide of the Secretary General<br>
-	<b>TO:</b> Commanding Officer of the VFI Sabbath<br>
-	<b>CC:</b> Special Representative aboard the VFI Sabbath<br>
+	<b>TO:</b> Commanding Officer of the SEV Torch<br>
+	<b>CC:</b> Special Representative aboard the SEV Torch<br>
 	<b>SUBJECT:</b> UMBRA protocol<br>
 	<hr>
 	This is a small addendum to the usual operating procedures. Unlike the rest of SOP, this is not left to the Commanding Officer's discretion and is mandatory. As unconventional as this is, we felt it is essential for smooth operation of this mission.<br>
 	Procedure can be initiated only by transmission from SCG Expeditionary Command via secure channel. The sender may not introduce themselves, but you shouldn't have trouble confirming the transmission source, I believe.<br>
 	The signal to initiate the procedure are codewords 'GOOD NIGHT WORLD' used in this order as one phrase. You do not need to send acknowledgement.
-	<li>Information about this expedition's findings is to be treated as secret and vital to SCG's national security, and is protected under codeword UMBRA. Only SCG government employees, NT personnel and Skrell citizens aboard the VFI Sabbath are allowed access to this information on a need-to-know basis.</li>
+	<li>Information about this expedition's findings is to be treated as secret and vital to SCG's national security, and is protected under codeword UMBRA. Only SCG government employees, NT personnel and Skrell citizens aboard the SEV Torch are allowed access to this information on a need-to-know basis.</li>
 	<li>The secrecy of this information is to be applied retroactively. Any non-cleared personnel who were exposed to such information are to be secured and transferred to DIA on arrival at home port.</li>
 	<li>Any devices capable of transmitting data on interstellar range are to be confiscated from private possession.</li>
 	<li>Disregard any systems remaining in your flight plan and set course for Sol, Neptune orbit. You will be contacted upon your arrival. Do not make stops in ports on the way unless absolutely necessary.</li>

@@ -3,7 +3,7 @@
 	set category = "Debug"
 	set name = "Edit Ticker Variables"
 
-		feedback_add_details("admin_verb","ETV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb","ETV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/mod_list_add_ass()
 	var/class = "text"
@@ -126,7 +126,7 @@
 	if(L.len > 0)
 		var/a = L[1]
 		try
-			if(!isnum(a) && L[a] != null)
+			if(!isnum_safe(a) && L[a] != null)
 				assoc = 1 //This is pretty weak test but I can't think of anything else
 				to_chat(usr, "List appears to be associative.")
 		catch {} // Builtin non-assoc lists (contents, etc.) will runtime if you try to get an assoc value of them
@@ -162,7 +162,7 @@
 
 	if(isnull(variable))
 		to_chat(usr, "Unable to determine variable type.")
-	else if(isnum(variable))
+	else if(isnum_safe(variable))
 		to_chat(usr, "Variable appears to be <b>NUM</b>.")
 		default = "num"
 		dir = 1
@@ -358,7 +358,7 @@
 				to_chat(usr, "Unable to determine variable type.")
 				class = null
 				autodetect_class = null
-			else if(isnum(var_value))
+			else if(isnum_safe(var_value))
 				to_chat(usr, "Variable appears to be <b>NUM</b>.")
 				class = "num"
 				dir = 1
@@ -413,7 +413,7 @@
 		var/default
 		if(isnull(var_value))
 			to_chat(usr, "Unable to determine variable type.")
-		else if(isnum(var_value))
+		else if(isnum_safe(var_value))
 			to_chat(usr, "Variable appears to be <b>NUM</b>.")
 			default = "num"
 			dir = 1

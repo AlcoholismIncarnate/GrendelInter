@@ -514,6 +514,9 @@ macro "macro"
 		name = "F"
 		command = ".fixeye"
 	elem 
+		name = "V"
+		command = ".mob_rest"
+	elem 
 		name = "SHIFT+X"
 		command = ".wield"
 	elem 
@@ -651,12 +654,6 @@ macro "macro"
 	elem 
 		name = "."
 		command = "move-down"
-	elem 
-		name = "SHIFT"
-		command = "setmovingquickly"
-	elem 
-		name = "SHIFT+UP"
-		command = "setmovingslowly"
 
 macro "borgmacro"
 	elem 

@@ -9,7 +9,7 @@
 	var/home_system = "Unset"           //System of birth.
 	var/citizenship = "None"            //Current home system.
 	var/faction = "None"                //Antag faction/general associated faction.
-	var/religion = "None"               //Religious association.
+	var/religion = "Deo Machina"               //Religious association.
 	var/family = TRUE
 /*
 /datum/category_item/player_setup_item/general/background
@@ -44,7 +44,7 @@
 	if(!pref.home_system)		 pref.home_system = "Unset"
 	if(!pref.citizenship) 		pref.citizenship = "None"
 	if(!pref.faction)    		pref.faction =     "None"
-	if(!pref.religion)    		pref.religion =    "None"
+	if(!pref.religion)    		pref.religion =    "Deo Machina"
 
 	pref.nanotrasen_relation = sanitize_inlist(pref.nanotrasen_relation, COMPANY_ALIGNMENTS, initial(pref.nanotrasen_relation))
 

@@ -396,7 +396,7 @@ swapmap
 		swapmaps_byname[id]=src
 
 	proc/AllTurfs(z)
-		if(isnum(z) && (z<z1 || z>z2)) return null
+		if(isnum_safe(z) && (z<z1 || z>z2)) return null
 		return block(LoCorner(z),HiCorner(z))
 
 	// this could be safely called for an obj or mob as well, but

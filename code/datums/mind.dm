@@ -66,6 +66,11 @@
 	//used for optional self-objectives that antagonists can give themselves, which are displayed at the end of the round.
 	var/ambitions
 
+	var/thunder_points = 0
+	var/thunder_respawns = 0
+	var/mob/living/carbon/human/thunderfield_owner
+	var/thunderfield_cheater = FALSE
+
 	var/prayer
 	var/religion
 	var/list/initial_email_login = list("login" = "", "password" = "")
@@ -76,6 +81,7 @@
 
 /datum/mind/Destroy()
 	SSticker.minds -= src
+	current = null
 	. = ..()
 
 /datum/mind/proc/transfer_to(mob/living/new_character)
@@ -161,7 +167,7 @@
 	usr << browse(out, "window=edit_memory[src]")
 
 /datum/mind/proc/get_goal_from_href(var/href)
-	var/ind = isnum(href) ? href : text2num(href)
+	var/ind = isnum_safe(href) ? href : text2num(href)
 	if(ind > 0 && ind <= LAZYLEN(goals))
 		return goals[ind]
 

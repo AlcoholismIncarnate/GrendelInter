@@ -72,7 +72,7 @@
 /obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
 		return 1
-	
+
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting) //nullchecked by ..()
@@ -115,6 +115,7 @@
 				else
 					to_chat(user, "<span class='warning'>\The [src] is used up, but there are more wounds to treat on \the [affecting.name].</span>")
 			use(used)
+			H.update_bandaging(0)
 
 /obj/item/stack/medical/ointment
 	name = "ointment"
@@ -202,6 +203,7 @@
 				else
 					to_chat(user, "<span class='warning'>\The [src] is used up, but there are more wounds to treat on \the [affecting.name].</span>")
 			use(used)
+			H.update_bandaging(0)
 
 /obj/item/stack/medical/advanced/ointment
 	name = "advanced burn kit"
@@ -229,7 +231,7 @@
 					             "<span class='notice'>You start salving the wounds on [M]'s [affecting.name].</span>" )
 			if(!do_mob(user, M, 10))
 				to_chat(user, "<span class='notice'>You must stand still to salve wounds.</span>")
-				return 1 
+				return 1
 			user.visible_message( 	"<span class='notice'>[user] covers wounds on [M]'s [affecting.name] with regenerative membrane.</span>", \
 									"<span class='notice'>You cover wounds on [M]'s [affecting.name] with regenerative membrane.</span>" )
 			if (user.skillcheck(user.skills[SKILL_MED], 65, null, "Medical"))

@@ -243,6 +243,6 @@
 /decl/emote/visible/signal/get_emote_message_3p(var/mob/user, var/atom/target, var/extra_params)
 	if(istype(user) && !(user.r_hand && user.l_hand))
 		var/t1 = round(text2num(extra_params))
-		if(isnum(t1) && t1 <= 5)
+		if(isnum_safe(t1) && t1 <= 5)
 			return "USER raises [t1] finger\s."
 	return .. ()

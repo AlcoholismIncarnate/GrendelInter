@@ -8,7 +8,7 @@
 var/global/datum/book_manager/book_mgr = new()
 
 datum/book_manager/proc/path(id)
-	if(isnum(id)) // kill any path exploits
+	if(isnum_safe(id)) // kill any path exploits
 		return "[BOOK_PATH][id].sav"
 
 datum/book_manager/proc/getall()

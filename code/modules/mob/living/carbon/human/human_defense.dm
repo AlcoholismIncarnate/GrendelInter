@@ -173,6 +173,9 @@ meteor_act
 	if(user == src) // Attacking yourself can't miss
 		return target_zone
 
+	if(attempt_dodge())//Trying to dodge it before they even have the chance to miss us.
+		return null
+
 	var/hit_modifier = user.c_intent == I_AIM ? -40 : 0 //If they are in aim mode, miss less
 	var/hit_zone = get_zone_with_miss_chance(target_zone, src, hit_modifier)
 
@@ -315,9 +318,9 @@ meteor_act
 				if(prob(effective_force - stat_to_modifier(user.stats[STAT_HT])))
 					visible_message("<span class='danger'>[src] [species.knockout_message]</span>")
 					apply_effect(20, PARALYZE, blocked)
-			else
+			else if(hit_zone == (BP_L_LEG || BP_R_LEG || BP_L_FOOT || BP_R_FOOT))
 				//Easier to score a stun but lasts less time
-				if(prob(effective_force + 10))
+				if(prob(effective_force + 10 - stat_to_modifier(user.stats[STAT_HT])))
 					visible_message("<span class='danger'>[src] has been knocked down!</span>")
 					apply_effect(6, WEAKEN, blocked)
 		//Apply blood

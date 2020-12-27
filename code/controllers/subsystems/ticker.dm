@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/Initialize()
 	to_world("<B><FONT color='blue'>Welcome back.</FONT></B>")
-	to_world("Setup your character and select ready. The carnage will start in [round(pregame_timeleft/10)] seconds.")
+	to_world("Choose your face, and prepare to act out your part. The Clock starts ticking in [round(pregame_timeleft/10)] seconds.")
 	return ..()
 
 /datum/controller/subsystem/ticker/fire(resumed = 0)
@@ -91,7 +91,7 @@ SUBSYSTEM_DEF(ticker)
 
 	spawn(0)//Forking here so we dont have to wait for this to finish
 		mode.post_setup()
-		to_world("<FONT color='blue'><B>You need to get back.</B></FONT>")
+		to_world("<FONT color='blue'><B>The clock is ticking, you must awake.</B></FONT>")
 		if (eof)
 			if(prob(40))
 				eof.apply_event()
@@ -105,8 +105,6 @@ SUBSYSTEM_DEF(ticker)
 		send2adminirc("Round has started with no admins online.")
 
 	config.ooc_allowed = !(config.ooc_allowed)
-	if(!config.ooc_allowed)
-		to_world("<B>The OOC channel has been globally disabled!</B>")
 
 
 /datum/controller/subsystem/ticker/proc/playing_tick()
@@ -270,7 +268,6 @@ Helpers
 	mode = mode_datum
 	master_mode = mode_to_try
 	if(mode_to_try == "secret")
-		to_world("<B>The current game mode is - Secret!</B>")
 		var/list/mode_names = list()
 		for (var/mode_tag in base_runnable_modes)
 			var/datum/game_mode/M = gamemode_cache[mode_tag]
@@ -467,7 +464,6 @@ Helpers
 	round_end_stats += "Number of deaths in space: <font color='red'><B>[GLOB.deaths_in_space]</B></font>.\n"
 	round_end_stats += "Total teeth lost: <font color='red'><B>[GLOB.teeth_lost]</B></font>.\n"
 	round_end_stats += "Total bloodshed: <font color='red'><B>[GLOB.total_deaths]</B></font>.\n"
-	round_end_stats += "Total orgasms: <font color='red'><B>[GLOB.total_orgasms]</B></font>.\n"
 	for(var/old_god in GLOB.all_religions)
 		if(old_god != LEGAL_RELIGION)
 			if(GLOB.all_religions[old_god].followers.len > 0)

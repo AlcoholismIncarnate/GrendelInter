@@ -120,6 +120,169 @@
 	density = 1
 	anchored = 1
 
+/obj/structure/merzikas
+	name = "merzikas"
+	desc = "A lost soul."
+	icon = 'icons/obj/miscobjs.dmi'
+	icon_state = "merzikas"
+	layer = ABOVE_WINDOW_LAYER
+	density = 0
+	anchored = 1
+
+/obj/structure/merzikas2
+	name = "merzikas"
+	desc = "A lost soul."
+	icon = 'icons/obj/miscobjs.dmi'
+	icon_state = "merzikas2"
+	layer = ABOVE_WINDOW_LAYER
+	density = 0
+	anchored = 1
+
+/obj/structure/hellmushroom
+	name = "flesh mushroom"
+	desc = "A big mushroom with veins with blood running through."
+	icon = 'icons/obj/miscobjs.dmi'
+	icon_state = "hellmushroom"
+	layer = ABOVE_WINDOW_LAYER
+	density = 1
+	anchored = 1
+
+/obj/structure/hellskull
+	name = "skull"
+	desc = "A lost soul."
+	icon = 'icons/obj/miscobjs.dmi'
+	icon_state = "hellskull"
+	layer = ABOVE_WINDOW_LAYER
+	density = 0
+	anchored = 1
+
+/obj/structure/hellskulls
+	name = "skull"
+	desc = "A lost soul."
+	icon = 'icons/obj/miscobjs.dmi'
+	icon_state = "hellskulls"
+	layer = ABOVE_WINDOW_LAYER
+	density = 0
+	anchored = 1
+
+/obj/structure/bloodveins
+	name = "veins"
+	desc = "Looks like veins with blood running through them."
+	icon = 'icons/obj/miscobjs.dmi'
+	icon_state = "bloodveins"
+	layer = ABOVE_WINDOW_LAYER
+	density = 0
+	anchored = 1
+
+/obj/structure/bloodflower
+	name = "blood flowers"
+	desc = "Looks like flowers made of flesh."
+	icon = 'icons/obj/miscobjs.dmi'
+	icon_state = "bloodflower"
+	layer = ABOVE_WINDOW_LAYER
+	density = 0
+	anchored = 1
+
+/obj/structure/gore
+	name = "pile of gore"
+	desc = "Looks like a pile of flesh and blood."
+	icon = 'icons/obj/miscobjs.dmi'
+	icon_state = "gore"
+	layer = ABOVE_WINDOW_LAYER
+	density = 0
+	anchored = 1
+
+/obj/structure/statue
+	name = "statue"
+	desc = "Looks like a columm made of flesh and bone."
+	icon = 'icons/obj/miscobjs.dmi'
+	icon_state = "statue"
+	layer = ABOVE_WINDOW_LAYER
+	density = 1
+	anchored = 1
+
+/obj/structure/merzikas3
+	name = "Merzikas"
+	desc = "A lost soul."
+	icon = 'icons/obj/miscobjs.dmi'
+	icon_state = "merzikas3"
+	layer = ABOVE_WINDOW_LAYER
+	density = 1
+	anchored = 1
+
+/obj/structure/hellglos
+	name = "flesh glos"
+	desc = "A greenish light source."
+	icon = 'icons/obj/miscobjs.dmi'
+	icon_state = "hellglos"
+	layer = ABOVE_WINDOW_LAYER
+	density = 1
+	anchored = 1
+	set_light(l_range = 5, l_power = 2, l_color = "#33ff9c")
+
+/obj/structure/hellplant2
+	name = "flesh plant"
+	desc = "A plant of sorts. Looks alive."
+	icon = 'icons/obj/miscobjs.dmi'
+	icon_state = "hellplant2"
+	layer = ABOVE_WINDOW_LAYER
+	density = 0
+	anchored = 1
+
+/obj/structure/bloodworms
+	name = "blood worms"
+	desc = "A bunch of worms."
+	icon = 'icons/obj/miscobjs.dmi'
+	icon_state = "bloodworms"
+	layer = ABOVE_WINDOW_LAYER
+	density = 0
+	anchored = 1
+
+/obj/structure/hellcage
+	name = "flesh cage"
+	desc = "A cage of sorts to torture the damned."
+	icon = 'icons/obj/miscobjs.dmi'
+	icon_state = "hellcage"
+	layer = ABOVE_WINDOW_LAYER
+	density = 1
+	anchored = 1
+
+/obj/structure/bloodsucker
+	name = "blood sucker"
+	desc = "What is that thing??"
+	icon = 'icons/obj/miscobjs.dmi'
+	icon_state = "bloodsucker"
+	layer = ABOVE_WINDOW_LAYER
+	density = 0
+	anchored = 1
+
+/obj/structure/hellsign
+	name = "sign"
+	desc = "Eternal Suffering."
+	icon = 'icons/obj/miscobjs.dmi'
+	icon_state = "hellsign"
+	layer = ABOVE_WINDOW_LAYER
+	density = 0
+	anchored = 1
+
+/obj/structure/hellcross
+	name = "rune cross"
+	desc = "A upside down cross with weird blood runes on it. Very strange."
+	icon = 'icons/obj/miscobjsbig.dmi'
+	icon_state = "hellcross"
+	layer = ABOVE_WINDOW_LAYER
+	density = 1
+	anchored = 1
+
+/obj/structure/hellheart
+	name = "Hells heart"
+	desc = "A huge floating big beating heart of flesh??"
+	icon = 'icons/obj/miscobjsbig.dmi'
+	icon_state = "hellsheart"
+	layer = ABOVE_WINDOW_LAYER
+	density = 1
+	anchored = 1
+
 /obj/structure/hospitaltech4
 	name = "some hospital device"
 	desc = "A weird hospital device. Doesn't do anything."

@@ -23,7 +23,7 @@
 /datum/sun/proc/calc_position()
 
 	if(world.time < solar_next_update) //if less than 60 game secondes have passed, do nothing
-		return
+		return;
 
 	angle = (angle + rate * 6) % 360	 // increase/decrease the angle to the sun, adjusted by the rate
 

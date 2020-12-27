@@ -20,12 +20,19 @@
 //Returns list element or null. Should prevent "index out of bounds" error.
 proc/listgetindex(var/list/list,index)
 	if(istype(list) && list.len)
-		if(isnum(index))
+		if(isnum_safe(index))
 			if(InRange(index,1,list.len))
 				return list[index]
 		else if(index in list)
 			return list[index]
 	return
+
+/proc/or_sign_list(var/list/input, nothing_text = "nothing", and_text = " || ", comma_text = " || ", final_comma_text = "" )
+	switch(input.len)
+		if(0) return nothing_text
+		if(1) return "[input[1]]"
+		if(2) return "[input[1]][and_text][input[2]]"
+		else  return "[jointext(input, comma_text, 1, -1)][final_comma_text][and_text][input[input.len]]"
 
 //Return either pick(list) or null if list is not of type /list or is empty
 proc/safepick(list/list)
@@ -373,7 +380,7 @@ proc/listclearnulls(list/list)
 	//world.log << "ascending len input: [L.len]"
 	var/list/out = list(pop(L))
 	for(var/entry in L)
-		if(isnum(entry))
+		if(isnum_safe(entry))
 			var/success = 0
 			for(var/i=1, i<=out.len, i++)
 				if(entry <= out[i])

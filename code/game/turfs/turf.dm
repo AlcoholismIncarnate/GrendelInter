@@ -36,6 +36,8 @@
 			src.Entered(AM)
 			return
 
+	RecalculateOpacity()
+
 	if (mapload && permit_ao)
 		queue_ao()
 

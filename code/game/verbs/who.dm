@@ -30,7 +30,7 @@
 						entry += " - <font color='black'><b>DEAD</b></font>"
 
 			var/age
-			if(isnum(C.player_age))
+			if(isnum_safe(C.player_age))
 				age = C.player_age
 			else
 				age = 0

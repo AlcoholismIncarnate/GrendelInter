@@ -1,10 +1,9 @@
 /datum/map/torch
-	name = "Sabbath"
-	full_name = "VFI Sabbath"
+	name = "Torch"
+	full_name = "SEV Torch"
 	path = "torch"
-	flags = MAP_HAS_BRANCH | MAP_HAS_RANK
 
-	lobby_icon = 'maps/torch/icons/lobby.dmi'
+	lobby_icon = 'maps/frontier/frontier_lobby.dmi'
 
 	station_levels = list(1,2,3,4,5)
 	contact_levels = list(1,2,3,4,5)
@@ -14,13 +13,13 @@
 	accessible_z_levels = list("1"=1,"2"=1,"3"=1,"4"=1,"5"=1,"8"=30)
 	overmap_size = 35
 	overmap_event_areas = 22
-	usable_email_tlds = list("sabbath.ec.scg", "sabbath.fleet.mil", "sabbath.marine.mil", "freemail.nt")
+	usable_email_tlds = list("torch.ec.scg", "torch.fleet.mil", "torch.marine.mil", "freemail.nt")
 
 	allowed_spawns = list("Cryogenic Storage", "Cyborg Storage")
 	default_spawn = "Cryogenic Storage"
 
-	station_name  = "VFI Sabbath"
-	station_short = "Sabbath"
+	station_name  = "SEV Torch"
+	station_short = "Torch"
 	dock_name     = "TBD"
 	boss_name     = "Expeditionary Command"
 	boss_short    = "Command"
@@ -45,7 +44,6 @@
 	away_site_budget = 3
 
 	id_hud_icons = 'maps/torch/icons/assignment_hud.dmi'
-	lobby_screens = list("title","title2")
 
 /datum/map/torch/setup_map()
 	..()
@@ -53,7 +51,7 @@
 	minor_announcement = new(new_sound = sound('sound/AI/torch/commandreport.ogg', volume = 45))
 
 /datum/map/torch/send_welcome()
-	var/welcome_text = "<center><img src = sollogo.png /><br /><font size = 3><b>VFI Sabbath</b> Sensor Readings:</font><hr />"
+	var/welcome_text = "<center><img src = sollogo.png /><br /><font size = 3><b>SEV Torch</b> Sensor Readings:</font><hr />"
 	welcome_text += "Report generated on [stationdate2text()] at [stationtime2text()]</center><br /><br />"
 	welcome_text += "Current system:<br /><b>[system_name()]</b><br />"
 	welcome_text += "Next system targeted for jump:<br /><b>[generate_system_name()]</b><br />"
@@ -78,7 +76,7 @@
 		welcome_text += "<li>\A <b>[O.name]</b>[location_desc]</li>"
 	welcome_text += "<br>No distress calls logged.<br />"
 
-	post_comm_message("VFI Sabbath Sensor Readings", welcome_text)
+	post_comm_message("SEV Torch Sensor Readings", welcome_text)
 	minor_announcement.Announce(message = "New [GLOB.using_map.company_name] Update available at all communication consoles.")
 
 //Overriding event containers to remove random versions of overmap events - electrical storm, dust and meteor

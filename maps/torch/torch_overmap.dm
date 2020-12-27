@@ -1,5 +1,5 @@
 /obj/effect/overmap/ship/torch
-	name = "VFI Sabbath"
+	name = "SEV Torch"
 	fore_dir = WEST
 	vessel_mass = 300
 	default_delay = 20 SECONDS

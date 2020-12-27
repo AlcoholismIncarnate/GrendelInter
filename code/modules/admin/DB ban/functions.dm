@@ -73,7 +73,7 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 			bantype_pass = 1
 	if( !bantype_pass ) return 0
 	if( !istext(reason) ) return 0
-	if( !isnum(duration) ) return 0
+	if( !isnum_safe(duration) ) return 0
 
 	var/ckey
 	var/computerid
@@ -175,7 +175,7 @@ datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 
 	if(istext(ban_id))
 		ban_id = text2num(ban_id)
-	if(!isnum(ban_id))
+	if(!isnum_safe(ban_id))
 		to_chat(usr, "<span class='warning'>Database update failed due to a ban ID mismatch. Contact the database admin.</span>")
 		return
 
@@ -185,7 +185,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 
 	if(!check_rights(R_BAN))	return
 
-	if(!isnum(banid) || !istext(param))
+	if(!isnum_safe(banid) || !istext(param))
 		to_chat(usr, "Cancelled")
 		return
 
@@ -223,7 +223,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 		if("duration")
 			if(!value)
 				value = input("Insert the new duration (in minutes) for [pckey]'s ban", "New Duration", "[duration]", null) as null|num
-				if(!isnum(value) || !value)
+				if(!isnum_safe(value) || !value)
 					to_chat(usr, "Cancelled")
 					return
 

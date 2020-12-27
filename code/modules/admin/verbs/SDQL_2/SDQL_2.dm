@@ -199,7 +199,7 @@
 		else
 			to_chat(usr, "[spaces][item]")
 
-		if(!isnum(item) && query_tree[item])
+		if(!isnum_safe(item) && query_tree[item])
 
 			if(istype(query_tree[item], /list))
 				to_chat(usr, "[spaces]&nbsp;&nbsp;&nbsp;&nbsp;(")
@@ -341,7 +341,7 @@
 	else if(expression[i] == "null")
 		val = null
 
-	else if(isnum(expression[i]))
+	else if(isnum_safe(expression[i]))
 		val = expression[i]
 
 	else if(copytext(expression[i], 1, 2) in list("'", "\""))
@@ -423,7 +423,7 @@
 		else if (expression[start + 1] == "\[" && islist(v))
 			var/list/L = v
 			var/index = SDQL_expression(source, expression[start + 2])
-			if (isnum(index) && (!IsInteger(index) || L.len < index))
+			if (isnum_safe(index) && (!IsInteger(index) || L.len < index))
 				to_chat(usr, "<span class='danger'>Invalid list index: [index]</span>")
 				return null
 

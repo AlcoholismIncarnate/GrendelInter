@@ -41,14 +41,14 @@
 //Going here till I find a better place for it.
 /mob/living/proc/handle_combat_mode()//Makes it so that you can't regain stamina in combat mode.
 	if(combat_mode)
-		if(staminaloss < 25)
+		if(staminaloss < 90)
 			adjustStaminaLoss(1)
 
 /mob/living/proc/attempt_dodge()//Handle parry is an object proc and it's, its own thing.
 	var/dodge_modifier = c_intent == I_DEFEND ? 4 : 0 //If they are in defend mode, they dodge more
-	if (defense_intent != I_DODGE || lying)  // If they are not trying to dodge or are lying down
+	if (defense_intent != I_DODGE || lying && !buckled && !stat == 0)  // If they are not trying to dodge, lying down, or not buckled.
 		return 0
-	if(combat_mode)//Todo, make use of the check_shield_arc proc to make sure you can't dodge from behind.
+	if(combat_mode || prob(35))//Todo, make use of the check_shield_arc proc to make sure you can't dodge from behind.
 		if(staminaloss < 50 && statcheck(stats[STAT_DX], 10 - dodge_modifier, "We couldn't dodge in time!", "dex"))//You gotta be the master of dexterity to dodge every time.
 			do_dodge()
 			return	1
@@ -66,7 +66,7 @@
 	adjustStaminaLoss(15)//add some stamina loss
 	playsound(loc, 'sound/weapons/punchmiss.ogg', 80, 1)//play a sound
 	step(src,lol)//move them
-	visible_message("<b><big>[src.name] dodges out of the way!!</big></b>")//send a message
+	visible_message("<b><big>[src.name] dodges out of the way!</big></b>")//send a message
 	//be on our way
 
 /mob/proc/surrender()//Surrending. I need to put this in a different file.
@@ -86,9 +86,21 @@
 	if(resting && getupchance)//The incapacitated proc includes resting for whatever fucking stupid reason I hate SS13 code so fucking much.
 		visible_message("<span class='notice'>[usr] is trying to get up.</span>")
 		if(do_after(src, 20 -  stat_to_modifier(stats[STAT_DX])* 3))
-			resting = 0
-			rest.icon_state = "rest0"
+			resting = FALSE
+			rest?.icon_state = "rest0"
+			update_canmove()
 		return
+
 	else
-		resting = 1
-		rest.icon_state = "rest1"
+		resting = TRUE
+		update_canmove()
+		//For stopping runtimes with NPCs
+		rest?.icon_state = "rest1"
+		fixeye?.icon_state = "fixeye"
+		walk_to(src,0)
+
+/mob/verb/mob_rest_hotkey()
+	set name = ".mob_rest"
+	set hidden = 1
+
+	mob_rest()

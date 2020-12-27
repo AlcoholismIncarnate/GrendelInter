@@ -298,7 +298,7 @@
 	if(sql_id)
 		if(istext(sql_id))
 			sql_id = text2num(sql_id)
-		if(!isnum(sql_id))
+		if(!isnum_safe(sql_id))
 			return
 
 	var/admin_rank = "Player"

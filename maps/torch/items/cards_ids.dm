@@ -2,7 +2,7 @@
 
 /obj/item/weapon/card/id/torch
 	name = "identification card"
-	desc = "An identification card issued to personnel aboard the VFI Sabbath."
+	desc = "An identification card issued to personnel aboard the SEV Torch."
 	icon_state = "id"
 	item_state = "card-id"
 	job_access_type = /datum/job/assistant
@@ -33,13 +33,13 @@
 
 // SolGov Crew and Contractors
 /obj/item/weapon/card/id/torch/crew
-	desc = "An identification card issued to SolGov crewmembers aboard the VFI Sabbath."
+	desc = "An identification card issued to SolGov crewmembers aboard the SEV Torch."
 	icon_state = "solgov"
 	job_access_type = /datum/job/crew
 
 
 /obj/item/weapon/card/id/torch/contractor
-	desc = "An identification card issued to private contractors aboard the VFI Sabbath."
+	desc = "An identification card issued to private contractors aboard the SEV Torch."
 	icon_state = "civ"
 	job_access_type = /datum/job/assistant
 
@@ -136,12 +136,12 @@
 //NanoTrasen and Passengers
 
 /obj/item/weapon/card/id/torch/passenger
-	desc = "A card issued to passengers and off-duty personnel aboard the VFI Sabbath."
+	desc = "A card issued to passengers and off-duty personnel aboard the SEV Torch."
 	icon_state = "id"
 	job_access_type = /datum/job/assistant
 
 /obj/item/weapon/card/id/torch/passenger/research
-	desc = "A card issued to NanoTrasen personnel aboard the VFI Sabbath."
+	desc = "A card issued to NanoTrasen personnel aboard the SEV Torch."
 	icon_state = "corporate"
 	job_access_type = /datum/job/scientist_assistant
 
@@ -175,7 +175,7 @@
 
 //Stowaway
 /obj/item/weapon/card/id/torch/stowaway
-	desc = "An identification card issued to personnel aboard the VFI Sabbath. Looks like the photo fell off this one."
+	desc = "An identification card issued to personnel aboard the SEV Torch. Looks like the photo fell off this one."
 	icon_state = "id"
 	job_access_type = /datum/job/crew
 

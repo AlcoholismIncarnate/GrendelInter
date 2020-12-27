@@ -1,8 +1,8 @@
 /obj/machinery/food_replicator
 	name = "replicator"
-	desc = "like a microwave, except better."
-	icon = 'icons/obj/vending.dmi'
-	icon_state = "soda"
+	desc = "A large steel machine, which works as a replicator for cheap 'food'. May induce vomiting."
+	icon = 'icons/obj/machines/replicator.dmi'
+	icon_state = "replicator"
 	density = 1
 	anchored = 1
 	idle_power_usage = 40
@@ -21,8 +21,8 @@
 					 "liquid nutrition" = /obj/item/weapon/reagent_containers/food/snacks/soydope,
 					 "pudding substitute" = /obj/item/weapon/reagent_containers/food/snacks/ricepudding)
 
-/obj/machinery/food_replicator/New()
-	..()
+/obj/machinery/food_replicator/Initialize()
+	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/replicator(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src) //used to hold the biomass
@@ -61,11 +61,11 @@
 
 /obj/machinery/food_replicator/update_icon()
 	if(stat & BROKEN)
-		icon_state = "[initial(icon_state)]-broken"
+		icon_state = "[initial(icon_state)]_d"
 	else if( !(stat & NOPOWER) )
 		icon_state = initial(icon_state)
 	else
-		src.icon_state = "[initial(icon_state)]-off"
+		src.icon_state = "[initial(icon_state)]_d"
 
 /obj/machinery/food_replicator/hear_talk(mob/M as mob, text, verb, datum/language/speaking)
 	if(!speaking || speaking.machine_understands)
@@ -95,7 +95,7 @@
 	src.audible_message("<b>\The [src]</b> states, \"[message_bio]\"")
 
 /obj/machinery/food_replicator/proc/state_menu()
-	src.audible_message("<b>\The [src]</b> states, \"Greetings! I serve the following dishes: [english_list(menu)]\"")
+	src.audible_message("<b>\The [src]</b> states, \"Greetings! I serve the following dishes: [english_list(menu)].\"")
 
 /obj/machinery/food_replicator/proc/dispense_food(var/text)
 	var/type = menu[text]
@@ -110,10 +110,12 @@
 	biomass -= biomass_per
 	src.audible_message("<b>\The [src]</b> states, \"Your [text] is ready!\"")
 	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+	src.icon_state = "[initial(icon_state)]_p"
 	var/atom/A = new type(src.loc)
 	A.SetName(text)
 	A.desc = "Looks... actually pretty good."
 	use_power_oneoff(75000)
+	update_icon()
 	return 1
 
 /obj/machinery/food_replicator/RefreshParts()

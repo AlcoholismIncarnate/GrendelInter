@@ -389,7 +389,7 @@
 /datum/integrated_io/proc/scramble()
 	if(isnull(data))
 		return
-	if(isnum(data))
+	if(isnum_safe(data))
 		write_data_to_pin(rand(-10000, 10000))
 	if(istext(data))
 		write_data_to_pin("ERROR")
@@ -402,7 +402,7 @@
 	if(io_type != DATA_CHANNEL)
 		return FALSE
 
-	if(isnull(new_data) || isnum(new_data) || istext(new_data) || isweakref(new_data)) // Anything else is a type we don't want.
+	if(isnull(new_data) || isnum_safe(new_data) || istext(new_data) || isweakref(new_data)) // Anything else is a type we don't want.
 		data = new_data
 		holder.on_data_written()
 		return TRUE

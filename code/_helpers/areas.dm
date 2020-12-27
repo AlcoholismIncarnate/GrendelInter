@@ -84,7 +84,7 @@
 	. = !istype(A,/area/shuttle)
 
 /proc/is_area_with_turf(var/area/A)
-	. = isnum(A.x)
+	. = isnum_safe(A.x)
 
 /proc/is_area_without_turf(var/area/A)
 	. = !is_area_with_turf(A)

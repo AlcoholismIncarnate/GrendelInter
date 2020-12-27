@@ -439,8 +439,8 @@
 	icon_state = "deck5"
 
 /obj/structure/sign/nanotrasen
-	name = "\improper Corporate"
-	desc = "An old metal sign which reads 'NT'. You don't know what it means. Go away."
+	name = "\improper Tetracorp"
+	desc = "Serving in the best interests of humanity."
 	icon_state = "NT"
 
 /obj/structure/sign/church
@@ -547,6 +547,93 @@
 	name = "Hippocrates"
 	desc = "Do no harm."
 	icon_state = "hippocrates"
+
+/obj/structure/sign/tetracorp
+	name = "TetraCorp"
+	desc = "You serve them!"
+	icon_state = "tetracorp"
+
+/obj/structure/sign/tetracorpbig
+	name = "TetraCorp"
+	desc = "You serve them!"
+	icon_state = "tetracorpbig"
+
+/obj/structure/sign/priceboard
+	name = "Priceboard"
+	desc = "They're ripping you off."
+	icon_state = "priceboard"
+
+/obj/structure/sign/leviathan
+	name = "Poster"
+	icon_state = "leviathan"
+
+/obj/structure/sign/colony
+	name = "Poster"
+	icon_state = "colony"
+
+/obj/structure/sign/dream
+	name = "Poster"
+	icon_state = "dream"
+
+/obj/structure/sign/beach
+	name = "Poster"
+	icon_state = "beach"
+
+/obj/structure/sign/sancposter
+	name = "Sanitation Poster"
+	icon_state = "sancposter"
+
+/obj/structure/sign/sancposter2
+	name = "Sanitation Poster"
+	icon_state = "sancposter2"
+
+/obj/structure/sign/sancposter3
+	name = "Sanitation Poster"
+	icon_state = "sancposter3"
+
+/obj/structure/sign/sancposter4
+	name = "Sanitation Poster"
+	icon_state = "sancposter4"
+
+/obj/structure/sign/sancposter5
+	name = "Sanitation Poster"
+	icon_state = "sancposter5"
+
+/obj/structure/sign/sancposter6
+	name = "Sanitation Poster"
+	icon_state = "sancposter6"
+
+/obj/structure/sign/kalendar1
+	name = "Calendar"
+	icon_state = "kalendar1"
+
+/obj/structure/sign/kalendar2
+	name = "Calendar"
+	icon_state = "kalendar2"
+
+/obj/structure/sign/chemical1
+	name = "Chemical Dangers"
+	icon_state = "chemical1"
+
+/obj/structure/sign/chemical2
+	name = "Chemical Dangers"
+	icon_state = "chemical2"
+
+/obj/structure/sign/blindfold
+	name = "Poster"
+	icon_state = "blindfold"
+
+/obj/structure/sign/knowledge
+	name = "Poster"
+	icon_state = "knowledge"
+
+/obj/structure/sign/ubk
+	name = "Poster"
+	icon_state = "ubk"
+
+/obj/structure/sign/sc
+	name = "Poster"
+	icon_state = "sc"
 
 /obj/structure/sign/flag
 	var/ripped = FALSE

@@ -23,7 +23,6 @@
 	default_spawn = "Cryogenic Storage"
 	use_overmap = 1
 	num_exoplanets = 3
-	welcome_sound = 'sound/effects/cowboysting.ogg'
 
 	emergency_shuttle_leaving_dock = "Attention all hands: the escape pods have been launched, maintaining burn for %ETA%."
 
@@ -41,3 +40,33 @@
 	SStrade.traders += new /datum/trader/xeno_shop
 	SStrade.traders += new /datum/trader/medical
 	SStrade.traders += new /datum/trader/mining
+	system_name = generate_system_name()
+	minor_announcement = new(new_sound = sound('sound/AI/torch/commandreport.ogg', volume = 45))
+
+/datum/map/bearcat/send_welcome()
+	var/welcome_text = "<center><img src = tetracorp.png /><br /><font size = 3><b>FTV Bearcat</b> Sensor Readings:</font><hr />"
+	welcome_text += "Report generated on [stationdate2text()] at [stationtime2text()]</center><br /><br />"
+	welcome_text += "Current system:<br /><b>[system_name()]</b><br />"
+	welcome_text += "Next system targeted for jump:<br /><b>[generate_system_name()]</b><br />"
+	welcome_text += "Time since last port visit:<br /><b>[rand(60,180)] days</b><br />"
+	welcome_text += "Scan results show the following points of interest:<br />"
+	var/list/space_things = list()
+	var/obj/effect/overmap/torch = map_sectors["1"]
+	for(var/zlevel in map_sectors)
+		var/obj/effect/overmap/O = map_sectors[zlevel]
+		if(O.name == torch.name)
+			continue
+		space_things |= O
+
+	for(var/obj/effect/overmap/O in space_things)
+		var/location_desc = " at present co-ordinates."
+		if (O.loc != torch.loc)
+			var/bearing = round(90 - Atan2(O.x - torch.x, O.y - torch.y),5) //fucking triangles how do they work
+			if(bearing < 0)
+				bearing += 360
+			location_desc = ", bearing [bearing]."
+		welcome_text += "<li>\A <b>[O.name]</b>[location_desc]</li>"
+	welcome_text += "<br>No distress calls logged.<br />"
+
+	post_comm_message("FTV Bearcat Sensor Readings", welcome_text)
+	minor_announcement.Announce(message = "New [GLOB.using_map.company_name] Update available at all communication consoles.")

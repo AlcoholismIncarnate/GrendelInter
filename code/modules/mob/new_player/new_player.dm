@@ -188,7 +188,7 @@
 		var/pollid = href_list["pollid"]
 		if(istext(pollid))
 			pollid = text2num(pollid)
-		if(isnum(pollid))
+		if(isnum_safe(pollid))
 			src.poll_player(pollid)
 		return
 
@@ -221,7 +221,7 @@
 							rating = null
 						else
 							rating = text2num(href_list["o[optionid]"])
-							if(!isnum(rating))
+							if(!isnum_safe(rating))
 								return
 
 						vote_on_numval_poll(pollid, optionid, rating)
@@ -322,6 +322,7 @@
 
 	SSticker.mode.handle_latejoin(character)
 	GLOB.universe.OnPlayerLatejoin(character)
+	spawnpoint.after_join(character)
 	if(job_master.ShouldCreateRecords(job.title))
 		if(character.mind.assigned_role != "Cyborg")
 			CreateModularRecord(character)

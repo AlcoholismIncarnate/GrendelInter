@@ -422,6 +422,56 @@
 		total_damage += ..(shock_damage, E.organ_tag, base_siemens_coeff * get_siemens_coefficient_organ(E))
 	return total_damage
 
+var/list/rank_prefix = list(\
+	"Captain" = "Captain",\
+	"Efreitor" = "Efr.",\
+	"Mladshiy Sergant" = "M.Sgt.",\
+	"Sergant" = "Sgt.",\
+	"Starshiy Sergant" = "S.Sgt.",\
+	"Starshina" = "Starsh.",\
+	"Praporshik" = "Prap.",\
+	"Starshiy Praporshik" = "St.Prap.",\
+	"Leitenant" = "Lt.",\
+	"Starshiy Leitenant" = "St.Lt.",\
+	"Kapitan" = "Kap.",\
+	"Mladshiy Leitenant" = "Ml.Lt.",\
+	"Private" = "PVT",\
+	"Private First Class" = "PFC",\
+	"Lance Corporal" = "LCPL",\
+	"Corporal" = "CPL",\
+	"Sergeant" = "SGT",\
+	"Staff Sergeant" = "SSGT",\
+	"Master Sergeant" = "MSGT",\
+	"Gunnery Sergeant" = "GySGT",\
+	"First Sergeant" = "FSGT",\
+	"Second Lieutenant" = "SLT",\
+	"Soldat" = "Soldat",\
+	"Gefreiter" = "Gefreiter",\
+	"Stabsgefreiter" = "Stabsgefreiter",\
+	"Stabsunteroffizier" = "Stabsunteroffizier",\
+	"Unteroffizier" = "Unteroffizier",\
+	"Leutnant" = "Leutnant",\
+	"Vojin" = "Vojin",\
+	"Svobodnik" = "Svobodnik",\
+	"Cetar" = "Cetar",\
+	"Rotmistr" = "Rotmistr",\
+	"Rotny" = "Rotny",\
+	"Porucik" = "Porucik",\
+	)
+
+/mob/living/carbon/human/proc/rank_prefix_name(name)
+	if(get_ins_rank())
+		if(findtext(name, " "))
+			name = copytext(name, findtext(name, " "))
+		name = get_ins_rank() + name
+	return name
+
+/mob/living/carbon/human/proc/get_ins_rank()
+	var/rank
+	if(rank_prefix[rank])
+		return rank_prefix[rank]
+	return ""
+
 /mob/living/carbon/human/proc/trace_shock(var/obj/item/organ/external/init, var/obj/item/organ/external/floor)
 	var/obj/item/organ/external/list/traced_organs = list(floor)
 
@@ -1496,66 +1546,73 @@
 
 /mob/living/carbon/human/proc/exam_self()
 	if(!stat)
-		visible_message( \
-			"<span class='notice'>[src] examines [gender==MALE ? "himself" : "herself"].</span>", \
-			"<span class='notice'><b>I check my vitals.</b></span>" \
-			)
-	else//We don't want to spam the chat that we're checking ourselves for injuries when we're out fucking cold.
-		to_chat(src, "<span class='notice'><b>I check my vitals.</b></span>")
+		visible_message("<span class='info'>[src] examines [gender==MALE ? "himself" : "herself"].</span>")
+	var/msg = "<div class='firstdiv'><div class='box'><span class='notice'><b>Let's see how I am doing.</b></span>\n"
 
+	if(!stat)
+		msg += "<span class='info'>I am alive and conscious.</span>\n"
+	if(stat == DEAD)
+		msg += "<span class='danger'>I am dead.</span>\n"
+	else if(sleeping || stat == UNCONSCIOUS)
+		if(!is_asystole())
+			msg += "<span class='danger'>I am unconscious, but still breathing.</span>\n"
+		else
+			msg += "<span class='danger'>I am dying.</span>\n"
 
-
-		//var/feels = 1 + round(org.pain/100, 0.1)
-		//var/brutedamage = org.brute_dam * feels
-		//var/burndamage = org.burn_dam * feels
-		/*
-		switch(brutedamage)
-			if(1 to 20)
-				status += "bruised"
-			if(20 to 40)
-				status += "wounded"
-			if(40 to INFINITY)
-				status += "mangled"
-
-		switch(burndamage)
-			if(1 to 10)
-				status += "numb"
-			if(10 to 40)
-				status += "blistered"
-			if(40 to INFINITY)
-				status += "peeling away"
-		*/
 	for(var/obj/item/organ/external/org in organs)
 		var/list/status = list()
-		var/hurts = org.get_pain() + org.get_damage()
-
-		if(!(chem_effects[CE_PAINKILLER] > 50))
+		var/hurts = org.get_pain()
+		if(!org.can_feel_pain())
+			hurts = 0
+		if(!can_feel_pain())
+			hurts = 0
+		if((chem_effects[CE_PAINKILLER] < hurts))
 			switch(hurts)
+				if(1 to 49)
+					status += "<span class='danger'><small>pain</small></span>"
+				if(50 to 89)
+					status += "<span class='danger'>PAIN</span>"
+				if(90 to INFINITY)
+					status += "<span class='danger'><big>PAIN</big></span>"
+		if(org.robotic >= ORGAN_ROBOT)
+			switch(org.damage)
 				if(1 to 25)
-					status += "<small>pain</small>"
-				if(25 to 75)
-					status += "pain"
-				if(75 to INFINITY)
-					status += "<big>PAIN</big>"
+					status += "<span class='danger'><small>slightly damaged</small></span>"
+				if(26 to 49)
+					status += "<span class='danger'>damaged</span>"
+				if(50 to 99)
+					status += "<span class='danger'>VERY DAMAGED</span>"
+				if(100 to INFINITY)
+					status += "<span class='danger'><big>BARELY WORKING</big></span>"
+
+		for(var/datum/wound/wound in org.wounds)
+			if(wound.embedded_objects.len)
+				status += "<span class='danger'>SHRAPNEL</span>"
+			if(wound.bandaged)
+				status += "<span class='binfo'>BANDAGED</span>"
 
 		if(org.is_stump())
-			status += "MISSING"
+			status += "<span class='danger'>MISSING</span>"
 		if(org.status & ORGAN_MUTATED)
-			status += "MISSHAPEN"
+			status += "<span class='danger'>MISSHAPEN</span>"
 		if(org.status & ORGAN_BLEEDING)
-			status += "BLEEDING"
+			status += "<span class='danger'>BLEEDING</span>"
 		if(org.dislocated == 2)
-			status += "DISLOCATED"
+			status += "<span class='danger'>DISLOCATED</span>"
 		if(org.status & ORGAN_BROKEN)
-			status += "BROKEN"
+			status += "<span class='danger'>BROKEN</span>"
+		if(org.splinted)
+			status += "<span class='binfo'>SPLINTED</span>"
 		if(org.status & ORGAN_DEAD)
-			status += "NECROTIC"
-		if(!org.is_usable() || org.is_dislocated())
-			status += "UNUSABLE"
+			status += "<span class='danger'>NECROTIC</span>"
+		if(org.is_dislocated()) //!org.is_usable() ||
+			status += "<span class='danger'>UNUSABLE</span>"
 		if(status.len)
-			to_chat(src, "<b>[capitalize(org.name)]:</b> <span class='danger'>[english_list(status)]!</span>")
+			msg += "<b>[capitalize(org.name)]:</b> [or_sign_list(status)]\n"
 		else
-			to_chat(src, "<b>[capitalize(org.name)]:</b> <span class='notice'>OK</span>")
+			msg += "<b>[capitalize(org.name)]:</b> <span class='info'>OK</span>\n"
+
+	to_chat(src, "[msg]</div></div>")
 
 /mob/living/carbon/human/throw_impact(atom/hit_atom)
 	if(iswall(hit_atom))
@@ -1624,20 +1681,19 @@
 		if(SOCIAL_CLASS_MIN)
 			return "<b>filth</b>"
 		if(SOCIAL_CLASS_MED)
-			return "<b>a commoner</b>"
+			return "<b>a worker</b>"
 		if(SOCIAL_CLASS_HIGH)
-			return "<b>a lesser noble</b>"
+			return "<b>an officer</b>"
 		if(SOCIAL_CLASS_MAX)
-			return "<b>a noble</b>"
-
+			return "<b>the authority</b>"
 
 /mob/living/carbon/human/proc/get_social_description(var/mob/living/carbon/human/H)
 	var/socclass = social_class
 	if(ishuman(H))
 		if(socclass < H.social_class)
-			return "They are of a <b>lesser</b> social class than me, thus making me superior."
+			return "They are of a <b>lesser</b> social class than me."
 		else if(socclass > H.social_class)
-			return "They are of a <b>higher</b> social class than me, I must respect and obey them!"
+			return "They are of a <b>higher</b> social class than me."
 		else
 			return "They are of the same social class as me."
 
@@ -1645,7 +1701,7 @@
 	var/obj/item/organ/external/E = get_organ(def_zone)
 	if(!E || E.is_stump())
 		return BULLET_IMPACT_NONE
-	if(ORGAN_ROBOT(E))
+	if(BP_IS_ROBOTIC(E))
 		return BULLET_IMPACT_METAL
 	return BULLET_IMPACT_MEAT
 
@@ -1676,3 +1732,60 @@
 
 /mob/living/carbon/human/proc/is_nude()
 	return (!w_uniform) ? 1 : 0
+
+/mob
+	var/zoomed = FALSE
+
+/mob/proc/do_zoom()
+	var/do_normal_zoom = TRUE
+	if(!zoomed)
+		if(lying)
+			return
+
+		if(do_normal_zoom)
+			var/_x = 0
+			var/_y = 0
+			switch(dir)
+				if (NORTH)
+					_y = 7
+				if (EAST)
+					_x = 7
+				if (SOUTH)
+					_y = -7
+				if (WEST)
+					_x = -7
+			if(ishuman(src))
+				var/mob/living/carbon/human/H = src
+				H.hide_cone()
+			client.pixel_x = world.icon_size*_x
+			client.pixel_y = world.icon_size*_y
+
+			set_face_dir(dir)//Face what we're zoomed in on.
+
+		zoomed = TRUE
+
+
+	else
+		if(do_normal_zoom)
+			if(ishuman(src))
+				var/mob/living/carbon/human/H = src
+				spawn(1)
+					H.show_cone()
+				client.pixel_x = 0
+				client.pixel_y = 0
+				H.show_cone()
+
+
+			set_face_dir(FALSE)//Reset us back to normal.
+		zoomed = FALSE
+
+/atom/CtrlAltClick(var/mob/living/carbon/human/user)
+	..()
+	if(!istype(user))
+		return
+	if(user.lying)
+		return
+	if(!user.zoomed)
+		visible_message("<span class='notice'>[user] peers into the distance.</span>")
+	user.face_atom(src)
+	user.do_zoom()

@@ -62,27 +62,13 @@
 #define ui_movi "-1,1"
 #define ui_zonesel "EAST+1, NORTH-2"
 #define ui_acti_alt "SOUTH-1,8" //alternative intent switcher for when the interface is hidden (F12)
-
-
-
-//Gun buttons
-#define ui_gun1 "EAST-2:26,SOUTH+2:7"
-#define ui_gun2 "EAST-1:28, SOUTH+3:7"
-#define ui_gun3 "EAST-2:26,SOUTH+3:7"
-#define ui_gun_select "EAST-1:28,SOUTH+2:7"
 #define ui_gun4 "EAST-3:24,SOUTH+2:7"
-
-#define ui_alien_head "CENTER-3:12,SOUTH:5"		//aliens
-#define ui_alien_oclothing "CENTER-2:14,SOUTH:5"//aliens
 
 #define ui_inv1 "CENTER-1,SOUTH:5"			//borgs
 #define ui_inv2 "CENTER,SOUTH:5"			//borgs
 #define ui_inv3 "CENTER+1,SOUTH:5"			//borgs
 #define ui_borg_store "CENTER+2,SOUTH:5"	//borgs
 #define ui_borg_inventory "CENTER-2,SOUTH:5"//borgs
-
-#define ui_monkey_mask "WEST+4:14,SOUTH:5"	//monkey
-#define ui_monkey_back "WEST+5:14,SOUTH:5"	//monkey
 
 #define ui_construct_health "EAST:00,CENTER:15" //same height as humans, hugging the right border
 #define ui_construct_purge "EAST:00,CENTER-1:15"
@@ -268,3 +254,11 @@
 
 #define ui_tg_iarrowleft "SOUTH-1,11"
 #define ui_tg_iarrowright "SOUTH-1,13"
+
+
+//Vrhuman
+#define ui_vrhuman_shop "WEST+2:-2,SOUTH+4:20"
+#define ui_vrhuman_exit "WEST+1:-2,SOUTH+4:20"
+#define ui_vrhuman_main "WEST:-2,SOUTH+4:20"
+#define ui_vrhuman_cleanup "WEST+3:-2,SOUTH+4:20"
+#define ui_vrhuman_dienow "WEST+4:-2,SOUTH+4:20"

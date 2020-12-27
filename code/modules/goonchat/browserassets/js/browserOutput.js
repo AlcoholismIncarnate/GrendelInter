@@ -25,7 +25,7 @@ var $messages, $subTheme, $subOptions, $subFont, $selectedSub, $contextMenu, $fi
 var opts = {
 	//General
 	'messageCount': 0, //A count...of messages...
-	'messageLimit': 2053, //A limit...for the messages...
+	'messageLimit': 5000, //A limit...for the messages...
 	'scrollSnapTolerance': 10, //If within x pixels of bottom
 	'clickTolerance': 10, //Keep focus if outside x pixels of mousedown position on mouseup
 	'imageRetryDelay': 50, //how long between attempts to reload images (in ms)
@@ -34,7 +34,7 @@ var opts = {
 	'wasd': false, //Is the user in wasd mode?
 	'priorChatHeight': 0, //Thing for height-resizing detection
 	'restarting': false, //Is the round restarting?
-	'iconsize': 12,
+	'iconsize': 14,
 
 	//Options menu
 	'selectedSubLoop': null, //Contains the interval loop for closing the selected sub menu
@@ -61,7 +61,7 @@ var opts = {
 	'clientDataLimit': 5,
 	'clientData': [],
 
-	'font': 'Arial',
+	'font': 'Roboto Condensed',
 	'messageCombining': true,
 
 };
@@ -392,10 +392,10 @@ function output(message, flag) {
 
 	//Stuff we do along with appending a message
 	var atBottom = false;
+	var scrollPos = $('body,html').scrollTop();
 	if (!filteredOut) {
 		var bodyHeight = $('body').height();
 		var messagesHeight = $messages.outerHeight();
-		var scrollPos = $('body,html').scrollTop();
 
 		//Should we snap the output to the bottom?
 		if (bodyHeight + scrollPos >= messagesHeight - opts.scrollSnapTolerance) {
@@ -420,9 +420,11 @@ function output(message, flag) {
 	}
 
 	opts.messageCount++;
+	var trimmedHeight = 0;
 
 	//Pop the top message off if history limit reached
 	if (opts.messageCount >= opts.messageLimit) {
+		trimmedHeight = $messages.children('div.entry:first-child').outerHeight();
 		$messages.children('div.entry:first-child').remove();
 		opts.messageCount--; //I guess the count should only ever equal the limit
 	}
@@ -500,6 +502,8 @@ function output(message, flag) {
 
 	if (!filteredOut && atBottom) {
 		$('body,html').scrollTop($messages.outerHeight());
+	} else if (trimmedHeight) {
+		$('body,html').scrollTop(scrollPos - trimmedHeight);
 	}
 }
 
@@ -544,7 +548,7 @@ function toHex(n) {
 
 function setTheme(theme) {
 	if (theme === 'white') {
-		document.getElementById("sheetofstyles").href = "browserOutput_white.css";
+		document.getElementById("sheetofstyles").href = "browserOutput.css";
 		runByond('?_src_=chat&proc=swaptolightmode');
 	} else if (theme === 'dark') {
 		document.getElementById("sheetofstyles").href = "browserOutput.css";
@@ -552,7 +556,6 @@ function setTheme(theme) {
 	}
 
 	setCookie('theme', theme, 365);
-	internalOutput('<span class="internal boldnshit">Set theme: '+theme+'</span>', 'internal');
 }
 
 function handleClientData(ckey, ip, compid) {
@@ -754,16 +757,13 @@ $(function() {
 
 	if (savedConfig.fontsize) {
 		$messages.css('font-size', savedConfig.fontsize);
-		internalOutput('<span class="internal boldnshit">Loaded font size setting of: '+savedConfig.fontsize+'</span>', 'internal');
 	}
 	if (savedConfig.iconsize) {
 		opts.iconsize = savedConfig.iconsize;
 		updateIconsSize($messages);
-		internalOutput('<span class="internal boldnshit">Loaded icon size setting of: '+savedConfig.iconsize+'</span>', 'internal');
 	}
 	if (savedConfig.lineheight) {
 		$("body").css('line-height', savedConfig.lineheight);
-		internalOutput('<span class="internal boldnshit">Loaded line height setting of: '+savedConfig.lineheight+'</span>', 'internal');
 	}
 	if(savedConfig.stheme){
 		setTheme(savedConfig.stheme);
@@ -775,7 +775,6 @@ $(function() {
 			opts.pingDisabled = true;
 			$('#ping').hide();
 		}
-		internalOutput('<span class="internal boldnshit">Loaded ping display of: '+(opts.pingDisabled ? 'hidden' : 'visible')+'</span>', 'internal');
 	}
 	if (savedConfig.shighlightTerms) {
 		var savedTerms = $.parseJSON(savedConfig.shighlightTerms);
@@ -787,17 +786,14 @@ $(function() {
 		}
 		if (actualTerms) {
 			actualTerms = actualTerms.substring(0, actualTerms.length - 2);
-			internalOutput('<span class="internal boldnshit">Loaded highlight strings of: ' + actualTerms+'</span>', 'internal');
 			opts.highlightTerms = savedTerms;
 		}
 	}
 	if (savedConfig.shighlightColor) {
 		opts.highlightColor = savedConfig.shighlightColor;
-		internalOutput('<span class="internal boldnshit">Loaded highlight color of: '+savedConfig.shighlightColor+'</span>', 'internal');
 	}
 	if (savedConfig.sfont) {
 		$('body').css({'font-family': savedConfig.sfont});
-		internalOutput('<span class="internal boldnshit">Loaded font: '+savedConfig.sfont+'</span>', 'internal');
 	}
 
 	if (savedConfig.smessagecombining) {

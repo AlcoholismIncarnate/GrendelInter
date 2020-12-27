@@ -265,7 +265,7 @@ var/list/debug_verbs = list (
 	if(!level) return
 	var/num_level = text2num(level)
 	if(!num_level) return
-	if(!isnum(num_level)) return
+	if(!isnum_safe(num_level)) return
 
 	var/type_text = input("Which type path?","Path?") as text
 	if(!type_text) return

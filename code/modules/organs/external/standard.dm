@@ -23,6 +23,7 @@
 	encased = "ribcage"
 	artery_name = "aorta"
 	cavity_name = "thoracic"
+	var/butchering_capacity = 1
 
 /obj/item/organ/external/chest/robotize()
 	if(..())

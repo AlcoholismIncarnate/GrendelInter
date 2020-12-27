@@ -19,6 +19,9 @@
 #define GRAB_NORMAL			"normal"
 #define GRAB_NAB			"nab"
 #define GRAB_NAB_SPECIAL	"special nab"
+#define GRAB_TAKEDOWN       "takedown"
+#define GRAB_STRANGLE       "strangle"
+#define GRAB_WRENCH         "wrench"
 
 // Grab levels.
 #define NORM_PASSIVE    "normal passive"
@@ -109,8 +112,6 @@
 
 
 #define MIN_SUPPLIED_LAW_NUMBER 15
-#define MAX_SUPPLIED_LAW_NUMBER 50
-
 #define MAX_SUPPLIED_LAW_NUMBER 50
 
 // NT's alignment towards the character
@@ -335,7 +336,7 @@
 #define THIRST_LEVEL_FILLED 400
 #define THIRST_LEVEL_MEDIUM 300
 #define THIRST_LEVEL_THIRSTY 150
-#define THIRST_LEVEL_DEHYDRATED 100
+#define THIRST_LEVEL_DEHYDRATED 50
 #define THIRST_FACTOR 0.5
 
 //Hygiene levels for humans

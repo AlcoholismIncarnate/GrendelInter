@@ -40,6 +40,8 @@
 	var/social_class = SOCIAL_CLASS_MED	  //Job's social standing.
 
 	var/sex_lock
+	var/important
+	var/rankprefix = ""
 
 	var/list/possible_goals
 	var/min_goals = 1
@@ -109,8 +111,6 @@
 		H.mind.store_memory(remembered_info)
 		H.mind.initial_account = M
 
-	to_chat(H, "<span class='notice'><b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b></span>")
-
 // overrideable separately so AIs/borgs can have cardborg hats without unneccessary new()/qdel()
 /datum/job/proc/equip_preview(mob/living/carbon/human/H, var/alt_title, var/datum/mil_branch/branch)
 	var/decl/hierarchy/outfit/outfit = get_outfit(H, alt_title, branch)
@@ -129,7 +129,7 @@
 	return (available_in_days(C) == 0) //Available in 0 days = available right now = player is old enough to play.
 
 /datum/job/proc/available_in_days(client/C)
-	if(C && config.use_age_restriction_for_jobs && isnull(C.holder) && isnum(C.player_age) && isnum(minimal_player_age))
+	if(C && config.use_age_restriction_for_jobs && isnull(C.holder) && isnum_safe(C.player_age) && isnum_safe(minimal_player_age))
 		return max(0, minimal_player_age - C.player_age)
 	return 0
 

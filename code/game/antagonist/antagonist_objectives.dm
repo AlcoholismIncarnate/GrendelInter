@@ -53,6 +53,7 @@
 /mob/living/proc/set_ambition()
 	set name = "Set Ambition"
 	set category = "IC"
+	set hidden = 0
 	set src = usr
 
 	if(!mind)

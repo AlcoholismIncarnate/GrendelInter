@@ -47,7 +47,7 @@
 
 		if(istype(colors[i], /list))
 			for(var/j = 1, j <= 4, j++)
-				if(j <= length(colors[i]) && isnum(colors[i][j]))
+				if(j <= length(colors[i]) && isnum_safe(colors[i][j]))
 					c[i][j] = colors[i][j]
 
 	return MapColors_interpolate(I, ratio,

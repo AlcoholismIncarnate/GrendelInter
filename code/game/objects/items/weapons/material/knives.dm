@@ -94,6 +94,26 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	applies_material_colour = FALSE
 
+/obj/item/weapon/material/knife/reaper
+	name = "reaper knife"
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "merc"
+	item_state = "knife1"
+	desc = "A very rare blade used by rugged souls in the galaxy."
+	force_divisor = 0.25 // 15 when wielded with hardness 60 (steel)
+	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	applies_material_colour = FALSE
+
+/obj/item/weapon/material/knife/reaper
+	name = "small sword"
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "smallsword"
+	item_state = "knife1"
+	desc = "A small sword made of steel."
+	force_divisor = 0.40 // 15 when wielded with hardness 60 (steel)
+	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	applies_material_colour = FALSE
+
 /obj/item/weapon/material/knife/test
 	name = "knife"
 	icon = 'icons/obj/weapons.dmi'
@@ -121,6 +141,26 @@
 	item_state = "knife1"
 	desc = "A knife, figure the rest."
 	force_divisor = 0.20 // 15 when wielded with hardness 60 (steel)
+	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	applies_material_colour = FALSE
+
+/obj/item/weapon/material/knife/bone
+	name = "bone knife"
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "boneknife"
+	item_state = "knife1"
+	desc = "A knife with handle of flesh and bone."
+	force_divisor = 0.17 // 15 when wielded with hardness 60 (steel)
+	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	applies_material_colour = FALSE
+
+/obj/item/weapon/material/knife/bonesickel
+	name = "bone sickel"
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "bonesickel"
+	item_state = "knife1"
+	desc = "A sickel made of flesh and bone."
+	force_divisor = 0.17 // 15 when wielded with hardness 60 (steel)
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	applies_material_colour = FALSE
 

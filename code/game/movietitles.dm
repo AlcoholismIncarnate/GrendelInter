@@ -163,32 +163,12 @@ client
 	if(corpses.len)
 		titles += "<center>BASED ON REAL EVENTS<br>In memory of [english_list(corpses)].</center>"
 
-
-	var/list/staff = list("PRODUCTION STAFF:")
-	var/list/staffjobs = list("Coffee Fetcher", "Cameraman", "Angry Yeller", "Chair Operator", "Choreographer", "Historical Consultant", "Costume Designer", "Chief Editor", "Executive Assistant")
-	var/list/goodboys = list()
-	for(var/client/C)
-		if(!C.holder)
-			continue
-		if(C.holder.rights & (R_DEBUG|R_ADMIN))
-			var/datum/species/S = all_species[pick(all_species)]
-			var/g = prob(50) ? MALE : FEMALE
-			staff += "[uppertext(pick(staffjobs))] - [S.get_random_name(g)] a.k.a. '[C.key]'"
-		else if(C.holder.rights & R_MOD)
-			goodboys += "[C.key]"
-
-	titles += "<center>[jointext(staff,"<br>")]</center>"
-	if(goodboys.len)
-		titles += "<center>STAFF'S GOOD BOYS:<br>[english_list(goodboys)]</center><br>"
-
-
 	//Add round end stats to ticker
 	//These need to be in two vars because ???????????  But it doesn't print the two lines when it's in one var
 	var/end_round_stat1 =  "The floor was shit on [GLOB.shit_left] times.<br>\
 							The floor was pissed on [GLOB.piss_left] times.<br>"
 
 	var/end_round_stat2 =  "[GLOB.total_deaths] people died in total.<br>\
-							[GLOB.total_orgasms] lucky spacemen came during the shift.<br>\
 							[GLOB.deaths_in_space] people died in space.<br>\
 						 	[GLOB.teeth_lost] teeth were lost.<br>"
 
@@ -196,10 +176,8 @@ client
 	titles += "<center>[end_round_stat2]</center>"
 
 
-	var/disclaimer = "<br>Sponsored by [GLOB.using_map.company_name].<br>All rights reserved.<br>\
-					 This motion picture is protected under the copyright laws of the Kingdom<br>, which are used everywhere throughout the galaxy.<br>\
-					 Colony of First Publication: [pick("Mars", "Luna", "Earth", "Venus", "Phobos", "Ceres", "Tiamat", "Ceti Epsilon", "Eos", "Pluto", "Ouere",\
-					 "Lordania", "Kingston", "Cinu", "Yuklid V", "Lorriman", "Tersten", "Gaia")].<br>"
+	var/disclaimer = "<br>Filmed by [GLOB.using_map.company_name].<br>All rights reserved.<br>\
+					 This motion picture is not to be seen by unauthorized personnel.\<br>"
 	disclaimer += pick("Use for parody prohibited.",
 					   "All stunts were performed by underpaid interns. Do NOT try at home.",
 					   "[GLOB.using_map.company_name] does not endorse behaviour depicted. Attempt at your own risk.",

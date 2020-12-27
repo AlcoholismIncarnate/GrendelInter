@@ -155,6 +155,7 @@ GLOBAL_VAR_INIT(religion_combat_music, pick(list('sound/music/religion_combat_01
 GLOBAL_VAR_INIT(jester_combat_music, pick(list('sound/music/jester_combat_01.ogg','sound/music/jester_combat_02.ogg')))
 GLOBAL_VAR_INIT(security_combat_music, pick(list('sound/music/security_combat_01.ogg','sound/music/security_combat_02.ogg')))
 
+GLOBAL_LIST_INIT(blood_drip, list('sound/effects/gore/blood1.ogg', 'sound/effects/gore/blood2.ogg', 'sound/effects/gore/blood3.ogg', 'sound/effects/gore/blood3.ogg', 'sound/effects/gore/blood4.ogg', 'sound/effects/gore/blood5.ogg', 'sound/effects/gore/blood6.ogg'))
 //We should look into making this shit work
 /*
 var/list/climb_sound = list(
@@ -403,7 +404,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 
 	var/turf/T = get_turf(src)
 	// 3D sounds, the technology is here!
-	if(isturf(turf_source))
+	if(T && isturf(turf_source))
 		//sound volume falloff with distance
 		var/distance = get_dist(T, turf_source)
 

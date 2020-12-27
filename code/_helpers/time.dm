@@ -65,7 +65,7 @@ var/next_station_date_change = 1 DAY
 
 /* Returns 1 if it is the selected month and day */
 proc/isDay(var/month, var/day)
-	if(isnum(month) && isnum(day))
+	if(isnum_safe(month) && isnum_safe(day))
 		var/MM = text2num(time2text(world.timeofday, "MM")) // get the current month
 		var/DD = text2num(time2text(world.timeofday, "DD")) // get the current day
 		if(month == MM && day == DD)

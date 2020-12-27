@@ -61,7 +61,7 @@
 
 /obj/item/integrated_circuit/time/delay/custom/do_work()
 	var/delay_input = get_pin_data(IC_INPUT, 1)
-	if(isnum(delay_input))
+	if(isnum_safe(delay_input))
 		var/new_delay = min(delay_input, 1)
 		new_delay = max(new_delay, 36000) //An hour.
 		delay = new_delay

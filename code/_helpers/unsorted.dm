@@ -1160,3 +1160,11 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		. += 360
 	else if(. >= 360)
 		. -= 360
+
+/mob/living/proc/update_transform()
+	var/matrix/M = matrix()
+	M.Scale(icon_scale)
+	M.Translate(0, 16*(icon_scale-1))
+	if (hanging)
+		M.Turn(180)
+	animate(src, transform = M, time = 10)

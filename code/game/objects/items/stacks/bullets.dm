@@ -8,9 +8,9 @@
 	max_amount = 5
 	item_flags = ITEM_FLAG_NO_BLUDGEON
 
-/obj/item/stack/bullets/New(var/amount = 1)
-	if(isnum(amount))
-		amount = amount
+/obj/item/stack/bullets/New(var/set_amount = 1)
+	if(isnum_safe(set_amount))
+		amount = set_amount
 	update_icon()
 
 /obj/item/stack/bullets/afterattack(var/obj/item/I as obj, mob/user as mob, proximity)
@@ -29,7 +29,7 @@
 			to_chat(user, "<span class='notice'>You remove [take_amount] from the [new_stack.name]</span>")
 		else
 			new_stack.dropInto(user.loc)
-		
+
 		update_icon()
 
 

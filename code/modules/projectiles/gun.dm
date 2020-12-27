@@ -244,7 +244,7 @@
 	var/delay = max(burst_delay+1, fire_delay)//, DEFAULT_QUICK_COOLDOWN)
 	if(delay)
 		user.setClickCooldown(delay)
-	next_fire_time = world.time + delay
+	next_fire_time = world.time + delay / 2
 
 //obtains the next projectile to fire
 /obj/item/weapon/gun/proc/consume_next_projectile()
@@ -347,8 +347,8 @@
 
 	if(one_hand_penalty)
 		if(!held_twohanded)
-			acc_mod += -ceil(one_hand_penalty/2)
-			disp_mod += one_hand_penalty*0.5 //dispersion per point of two-handedness
+			acc_mod += -ceil(one_hand_penalty)
+			disp_mod += one_hand_penalty*1 //dispersion per point of two-handedness
 
 	//Accuracy modifiers
 	P.accuracy = accuracy + acc_mod
@@ -361,7 +361,9 @@
 		//As opposed to no-delay pew pew
 		P.accuracy += 2
 	if(!user.skillcheck(user.skills["ranged"], 55, "How the heck do you aim this thing?!", "ranged") || !user.combat_mode)//Being unskilled at guns decreased accuracy.
-		P.accuracy -= 2
+		P.accuracy -= 4
+	if(!user.combat_mode == 1)
+		P.accuracy -= 3
 
 //does the actual launching of the projectile
 /obj/item/weapon/gun/proc/process_projectile(obj/projectile, mob/user, atom/target, var/target_zone, var/params=null)

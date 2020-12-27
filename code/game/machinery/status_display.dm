@@ -1,5 +1,5 @@
 #define FONT_SIZE "5pt"
-#define FONT_COLOR "#09f"
+#define FONT_COLOR "#7f59bd"
 #define FONT_STYLE "Arial Black"
 #define SCROLL_SPEED 2
 
@@ -230,8 +230,6 @@
 			set_picture(signal.data["picture_state"])
 	update()
 
-#undef CHARS_PER_LINE
-#undef FOND_SIZE
 #undef FONT_COLOR
 #undef FONT_STYLE
 #undef SCROLL_SPEED

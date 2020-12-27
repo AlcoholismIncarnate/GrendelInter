@@ -788,7 +788,7 @@
 "rx" = (/obj/machinery/teleport/hub,/turf/simulated/floor/plating,/area/teleporter/seconddeck)
 "ry" = (/obj/effect/floor_decal/industrial/warning{dir = 8},/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/obj/machinery/camera/network/second_deck{c_tag = "Second Deck - Teleporter"},/obj/item/device/radio/intercom{dir = 8; pixel_x = 22},/turf/simulated/floor/plating,/area/teleporter/seconddeck)
 "rz" = (/obj/machinery/computer/drone_control,/turf/simulated/floor/plating,/area/engineering/drone_fabrication)
-"rA" = (/obj/machinery/drone_fabricator/torch,/turf/simulated/floor/plating,/area/engineering/drone_fabrication)
+"rA" = (/obj/machinery/drone_fabricator,/turf/simulated/floor/plating,/area/engineering/drone_fabrication)
 "rB" = (/turf/simulated/floor/plating,/area/engineering/drone_fabrication)
 "rD" = (/obj/structure/cable/green{d1 = 1; d2 = 4; icon_state = "1-4"},/obj/structure/disposalpipe/segment,/turf/simulated/floor/plating,/area/engineering/drone_fabrication)
 "rE" = (/obj/effect/floor_decal/industrial/warning{dir = 4},/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/obj/structure/cable/green{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/plating,/area/engineering/drone_fabrication)

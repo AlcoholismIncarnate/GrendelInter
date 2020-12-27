@@ -340,7 +340,7 @@
 	if(pollid == -1 || optionid == -1)
 		return
 
-	if(!isnum(pollid) || !isnum(optionid))
+	if(!isnum_safe(pollid) || !isnum_safe(optionid))
 		return
 	establish_db_connection()
 	if(dbcon.IsConnected())
@@ -410,7 +410,7 @@
 	if(pollid == -1 || replytext == "")
 		return
 
-	if(!isnum(pollid) || !istext(replytext))
+	if(!isnum_safe(pollid) || !istext(replytext))
 		return
 	establish_db_connection()
 	if(dbcon.IsConnected())
@@ -468,7 +468,7 @@
 	if(pollid == -1 || optionid == -1)
 		return
 
-	if(!isnum(pollid) || !isnum(optionid))
+	if(!isnum_safe(pollid) || !isnum_safe(optionid))
 		return
 	establish_db_connection()
 	if(dbcon.IsConnected())

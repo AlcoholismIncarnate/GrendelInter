@@ -1,5 +1,5 @@
 /************
-* VFI Sabbath *
+* SEV Torch *
 ************/
 /var/const/access_hangar = 73
 /datum/access/hangar
@@ -137,7 +137,7 @@
 
 
 /************
-* VFI Sabbath *
+* SEV Torch *
 ************/
 
 /datum/access/robotics

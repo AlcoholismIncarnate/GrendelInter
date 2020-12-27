@@ -100,7 +100,7 @@ var/const/NO_EMAG_ACT = -50
 
 	var/access = list()
 	var/registered_name = "Unknown" // The name registered_name on the card
-	slot_flags = SLOT_ID
+	slot_flags = SLOT_ID | SLOT_MASK
 
 	var/age = "\[UNSET\]"
 	var/blood_type = "\[UNSET\]"
@@ -324,8 +324,10 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/weapon/card/id/medical/paramedic
 	job_access_type = /datum/job/Paramedic
 
+/*
 /obj/item/weapon/card/id/medical/undertaker
 	job_access_type = /datum/job/undertaker
+*/
 
 /obj/item/weapon/card/id/medical/head
 	name = "identification card"
@@ -440,3 +442,40 @@ var/const/NO_EMAG_ACT = -50
 	desc = "A card issued to Merchants, indicating their right to sell and buy goods."
 	icon_state = "trader"
 	access = list(access_merchant)
+
+/obj/item/weapon/foodcoupon
+	name = "food coupon"
+	desc = "You present it to your local nutritionist to get food."
+	icon = 'icons/obj/items.dmi'
+	w_class = ITEM_SIZE_TINY
+	obj_flags = OBJ_FLAG_NO_EMBED
+	slot_flags = SLOT_EARS
+	var/spent = FALSE
+
+/obj/item/weapon/foodcoupon/attack_hand(mob/user as mob)
+	if (!spent)
+		playsound(loc, 'sound/items/poster_ripped.ogg', 100, TRUE)
+		for (var/i = FALSE to 3)
+			if (do_after(user, 10))
+				playsound(loc, 'sound/items/poster_ripped.ogg', 100, TRUE)
+			else
+				return
+		visible_message("<span class='warning'>[user] nullifies the food token via doing some magic [src].</span>" )
+		src.icon_state = "foodticket_spent"
+		src.spent = TRUE
+
+/obj/item/weapon/foodcoupon1
+	name = "food coupon, class 1"
+	desc = "You present it to your local nutritionist to get cheap and untasty, but food."
+	icon_state = "foodticket1"
+
+/obj/item/weapon/foodcoupon2
+	name = "food coupon, class 2"
+	desc = "You present it to your local nutritionist to get average food."
+	icon_state = "foodticket2"
+
+/obj/item/weapon/foodcoupon3
+	name = "food coupon, class 3"
+	desc = "You present it to your local nutritionist to get pretty good and rare food!"
+	icon_state = "foodticket3"
+

@@ -8,11 +8,57 @@
  *		Hydrant
  *		First Aid
  *		Excavation Closet
+ *		Clothes Closet
  */
 
 /*
  * Emergency Closet
  */
+/obj/structure/closet/clcloset
+	name = "storage closet"
+	desc = "It's a storage unit usually used for Tetracorp uniforms."
+	icon_state = "nt"
+	icon_closed = "nt"
+	icon_opened = "ntopen"
+
+/obj/structure/closet/clcloset/New()
+	..()
+	new /obj/item/clothing/under/rank/tetra(src)
+	new /obj/item/clothing/under/rank/tetra(src)
+	new /obj/item/clothing/under/rank/tetra(src)
+	new /obj/item/clothing/under/rank/tetra(src)
+	new /obj/item/clothing/under/rank/tetra(src)
+	new /obj/item/clothing/under/rank/tetra(src)
+	new /obj/item/clothing/shoes/jackboots(src)
+	new /obj/item/clothing/shoes/jackboots(src)
+	new /obj/item/clothing/shoes/jackboots(src)
+	new /obj/item/clothing/shoes/jackboots(src)
+	new /obj/item/clothing/shoes/jackboots(src)
+	new /obj/item/clothing/shoes/jackboots(src)
+
+
+/obj/structure/closet/radiocloset
+	name = "electronic storage closet"
+	desc = "It's a storage unit that usually contains general commlinks."
+	icon_state = "ntr"
+	icon_closed = "ntr"
+	icon_opened = "ntropen"
+
+/obj/structure/closet/radiocloset/New()
+	..()
+	new /obj/item/device/radio/headset(src)
+	new /obj/item/device/radio/headset(src)
+	new /obj/item/device/radio/headset(src)
+	new /obj/item/device/radio/headset(src)
+	new /obj/item/device/radio/headset(src)
+	new /obj/item/device/radio/headset(src)
+	new /obj/item/device/radio/headset(src)
+	new /obj/item/device/radio/headset(src)
+	new /obj/item/device/radio/headset(src)
+	new /obj/item/device/radio/headset(src)
+	new /obj/item/device/radio/headset(src)
+
+
 /obj/structure/closet/emcloset
 	name = "emergency closet"
 	desc = "It's a storage unit for emergency breathmasks and o2 tanks."

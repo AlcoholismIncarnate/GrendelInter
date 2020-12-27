@@ -44,6 +44,8 @@
 	target_relation.connected_relation = owner_relation
 	owner_relation.relation_holder = owner.mind
 	target_relation.relation_holder = target.mind
+	matchmaker.relations |= target_relation
+	matchmaker.relations |= owner_relation
 
 
 //Setup relations between families
@@ -118,6 +120,7 @@
 				if("Aunt")     return "Nephew"
 				if("Nephew")   return "Uncle"
 				if("Niece")    return "Uncle"
+				if("Husband")  return "Wife"
 		if(FEMALE)
 			switch(relation_type)
 				if("Mother")   return "Daughter"
@@ -130,6 +133,7 @@
 				if("Aunt")     return "Niece"
 				if("Nephew")   return "Aunt"
 				if("Niece")    return "Aunt"
+				if("Wife")     return "Husband"
 
 
 /datum/relation/family
@@ -180,6 +184,14 @@
 /datum/relation/family/Aunt
 	name = "Aunt"
 	desc = "They are your Aunt."
+
+/datum/relation/family/Husband
+	name = "Husband"
+	desc = "They are your Husband."
+
+/datum/relation/family/Wife
+	name = "Wife"
+	desc = "They are your Wife."
 
 
 /mob/living/carbon/human/verb/check_family()

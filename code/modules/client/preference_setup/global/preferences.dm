@@ -217,6 +217,12 @@ var/list/_client_preferences_by_type
 	key = "DEPT_GOALS"
 	options = list(GLOB.PREF_SHOW, GLOB.PREF_HIDE)
 
+/datum/client_preference/smooth_zoom
+	description = "Smooth Zooming"
+	key = "SMOOTH_ZOOM"
+	options = list(GLOB.PREF_YES, GLOB.PREF_NO)
+	default_value = GLOB.PREF_YES
+
 /********************
 * General Staff Preferences *
 ********************/

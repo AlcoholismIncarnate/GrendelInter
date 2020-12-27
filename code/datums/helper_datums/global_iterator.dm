@@ -122,7 +122,7 @@ Data storage vars:
 
 
 	proc/set_delay(new_delay)
-		if(isnum(new_delay))
+		if(isnum_safe(new_delay))
 			delay = max(1, round(new_delay))
 			return 1
 		else

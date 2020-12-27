@@ -1,19 +1,4 @@
 
-//Timing subsystem
-//Don't run if there is an identical unique timer active
-#define TIMER_UNIQUE		0x1
-//For unique timers: Replace the old timer rather then not start this one
-#define TIMER_OVERRIDE		0x2
-//Timing should be based on how timing progresses on clients, not the sever.
-//	tracking this is more expensive,
-//	should only be used in conjuction with things that have to progress client side, such as animate() or sound()
-#define TIMER_CLIENT_TIME	0x4
-//Timer can be stopped using deltimer()
-#define TIMER_STOPPABLE		0x8
-//To be used with TIMER_UNIQUE
-//prevents distinguishing identical timers with the wait variable
-#define TIMER_NO_HASH_WAIT  0x10
-
 #define TIMER_NO_INVOKE_WARNING 600 //number of byond ticks that are allowed to pass before the timer subsystem thinks it hung on something
 
 #define TIMER_ID_NULL -1
@@ -74,44 +59,31 @@
 #define INIT_ORDER_CHAT	-185
 #define SS_INIT_CHAT     -90 // Should be lower to ensure chat remains smooth during init.
 
-#define SS_INIT_GARBAGE          7
-#define SS_INIT_ANTAGS           6
-#define SS_INIT_SKYBOX           5
-#define SS_INIT_MAPPING          4
-#define SS_INIT_PROJECTILES		 -20
-#define SS_INIT_GARBAGE          13
-#define SS_INIT_DONATIONS        12
-#define SS_INIT_PLANTS           11
-#define SS_INIT_ANTAGS           10
-#define SS_INIT_MISC             9
+// Subsystem init_order, from highest priority to lowest priority
+// Subsystems shutdown in the reverse of the order they initialize in
+// The numbers just define the ordering, they are meaningless otherwise.
+
+#define SS_INIT_EARLY            19
+#define SS_INIT_GARBAGE          18
+#define SS_INIT_CHEMISTRY        17
+#define SS_INIT_PLANTS           16
+#define SS_INIT_ANTAGS           15
+#define SS_INIT_LORE             14
+#define SS_INIT_MISC             13
+#define SS_INIT_SKYBOX           12
+#define SS_INIT_MAPPING          11
+#define SS_INIT_DEPARTMENTS      10
+#define SS_INIT_JOBS             9
 #define SS_INIT_CHAR_SETUP       8
-#define SS_INIT_SKYBOX           7
-#define SS_INIT_MAPPING          6
+#define SS_INIT_CIRCUIT          7
+#define SS_INIT_GRAPH            6
 #define SS_INIT_OPEN_SPACE       5
-#define SS_INIT_CIRCUIT          4
-#define SS_INIT_GARBAGE          14
-#define SS_INIT_CHEMISTRY        13
-#define SS_INIT_MATERIALS        12
-#define SS_INIT_PLANTS           11
-#define SS_INIT_ANTAGS           10
-#define SS_INIT_CULTURE          9
-#define SS_INIT_CHAR_SETUP       8
-#define SS_INIT_SKYBOX           7
-#define SS_INIT_MAPPING          6
-#define SS_INIT_CIRCUIT          5
-#define SS_INIT_OPEN_SPACE       4
-#define SS_INIT_ATOMS            3
+#define SS_INIT_ATOMS            4
+#define SS_INIT_MACHINES         3
 #define SS_INIT_ICON_UPDATE      2
-#define SS_INIT_MACHINES         1
 #define SS_INIT_OVERLAY          1
 #define SS_INIT_DEFAULT          0
 #define SS_INIT_AIR             -1
-#define SS_INIT_ALARM           -2
-#define SS_INIT_LIGHTING        -3
-#define SS_INIT_XENOARCH       -50
-#define SS_INIT_BAY_LEGACY    -200
-#define SS_INIT_UNIT_TESTS    -250
-#define SS_INIT_MISC_LATE     -200
 #define SS_INIT_MISC_LATE       -2
 #define SS_INIT_MISC_CODEX      -3
 #define SS_INIT_ALARM           -4

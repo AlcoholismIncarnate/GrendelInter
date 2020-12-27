@@ -35,7 +35,7 @@
 			var/list/params = new
 			params["login"] = 1
 			params["key"] = client.key
-			if(isnum(client.player_age))
+			if(isnum_safe(client.player_age))
 				params["server_age"] = client.player_age
 			params["ip"] = client.address
 			params["clientid"] = client.computer_id

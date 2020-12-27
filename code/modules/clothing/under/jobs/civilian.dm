@@ -16,11 +16,20 @@
 	worn_state = "magistrate"
 
 /obj/item/clothing/under/rank/captain //Alright, technically not a 'civilian' but its better then giving a .dm file for a single define.
-	desc = "It's a blue jumpsuit with some gold markings denoting the rank of \"Captain\"."
-	name = "captain's jumpsuit"
-	icon_state = "captain"
-	item_state = "b_suit"
-	worn_state = "captain"
+	desc = "It's a white shirt and blue pants combo. Noticeably higher quality than other pieces of clothing on the station"
+	name = "high-quality clothes"
+	icon_state = "newcaptain"
+	item_state = "newcaptain"
+	worn_state = "newcaptain"
+	insrank = "Captain"
+
+/obj/item/clothing/under/rank/tetra //gonna replace everyone's uniforms with this, makes sense to be standardized.
+	desc =  "It's a grey jumpsuit with a deep purple vest. It has the Tetracorp logo stamped onto it. The standard uniform for all workers."
+	name = "Tetracorp uniform"
+	icon_state = "cargotetro"
+	item_state = "cargotetro"
+	worn_state = "cargotetro"
+
 
 
 /obj/item/clothing/under/rank/cargo

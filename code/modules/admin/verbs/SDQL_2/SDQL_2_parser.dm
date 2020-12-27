@@ -562,11 +562,11 @@
 		node += "null"
 		i++
 
-	else if(lowertext(copytext(token(i), 1, 3)) == "0x" && isnum(hex2num(copytext(token(i), 3))))
+	else if(lowertext(copytext(token(i), 1, 3)) == "0x" && isnum_safe(hex2num(copytext(token(i), 3))))
 		node += hex2num(copytext(token(i), 3))
 		i++
 
-	else if(isnum(text2num(token(i))))
+	else if(isnum_safe(text2num(token(i))))
 		node += text2num(token(i))
 		i++
 

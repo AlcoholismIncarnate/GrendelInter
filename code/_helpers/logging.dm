@@ -202,7 +202,7 @@
 	return "[src] ([type]) ([any2ref(src)])"
 
 /area/get_log_info_line()
-	return "[..()] ([isnum(z) ? "[x],[y],[z]" : "0,0,0"])"
+	return "[..()] ([isnum_safe(z) ? "[x],[y],[z]" : "0,0,0"])"
 
 /turf/get_log_info_line()
 	return "[..()] ([x],[y],[z]) ([loc ? loc.type : "NULL"])"

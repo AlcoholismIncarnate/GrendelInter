@@ -88,7 +88,7 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/lobby_icon									// The icon which contains the lobby image(s)
 	var/list/lobby_screens = list()                 // The list of lobby screen to pick() from. If left unset the first icon state is always selected.
 	var/lobby_music/lobby_music                     // The track that will play in the lobby screen. Handed in the /setup_map() proc.
-	var/welcome_sound = 'sound/effects/RoundStart.ogg'		// Sound played on roundstart
+	var/welcome_sound = 'sound/AI/theclockstartsticking.ogg'		// Sound played on roundstart
 
 	var/default_law_type = /datum/ai_laws/nanotrasen  // The default lawset use by synth units, if not overriden by their laws var.
 	var/security_state = /decl/security_state/default // The default security state system to use.
@@ -191,6 +191,12 @@ var/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/list/sites_by_spawn_weight = list()
 	for (var/site_name in SSmapping.away_sites_templates)
 		var/datum/map_template/ruin/away_site/site = SSmapping.away_sites_templates[site_name]
+
+		if((site.template_flags & TEMPLATE_FLAG_SPAWN_GUARANTEED) && site.load_new_z()) // no check for budget, but guaranteed means guaranteed
+			report_progress("Loaded guaranteed away site [site]!")
+			away_site_budget -= site.cost
+			continue
+
 		sites_by_spawn_weight[site] = site.spawn_weight
 	while (away_site_budget > 0 && sites_by_spawn_weight.len)
 		var/datum/map_template/ruin/away_site/selected_site = pickweight(sites_by_spawn_weight)

@@ -68,8 +68,8 @@ medals
 	icon_state = "white_heart"
 
 /obj/item/clothing/accessory/solgov/torch_patch
-	name = "\improper Sabbath mission patch"
-	desc = "A fire resistant shoulder patch, worn by the personnel involved in the Sabbath Project."
+	name = "\improper Torch mission patch"
+	desc = "A fire resistant shoulder patch, worn by the personnel involved in the Torch Project."
 	icon_state = "torchpatch"
 	slot = ACCESSORY_SLOT_INSIGNIA
 

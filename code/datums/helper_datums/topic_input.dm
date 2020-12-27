@@ -20,7 +20,7 @@
 		var/t = get(i)
 		if(t)
 			t = text2num(t)
-		return isnum(t) ? t : null
+		return isnum_safe(t) ? t : null
 
 	proc/getObj(i)
 		var/t = getAndLocate(i)

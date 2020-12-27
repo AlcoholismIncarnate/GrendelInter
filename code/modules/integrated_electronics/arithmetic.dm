@@ -17,7 +17,7 @@
 	var/result = 0
 	for(var/datum/integrated_io/input/I in inputs)
 		I.pull_data()
-		if(isnum(I.data))
+		if(isnum_safe(I.data))
 			result = result + I.data
 	set_pin_data(IC_OUTPUT, 1, result)
 
@@ -32,7 +32,7 @@
 	var/result = 0
 	for(var/datum/integrated_io/input/I in inputs)
 		I.pull_data()
-		if(isnum(I.data))
+		if(isnum_safe(I.data))
 			result = result - I.data
 	set_pin_data(IC_OUTPUT, 1, result)
 
@@ -47,7 +47,7 @@
 	var/result = 0
 	for(var/datum/integrated_io/input/I in inputs)
 		I.pull_data()
-		if(isnum(I.data))
+		if(isnum_safe(I.data))
 			result = result * I.data
 	set_pin_data(IC_OUTPUT, 1, result)
 
@@ -62,7 +62,7 @@
 	var/result = 0
 	for(var/datum/integrated_io/input/I in inputs)
 		I.pull_data()
-		if(isnum(I.data) && I.data != 0) //No runtimes here.
+		if(isnum_safe(I.data) && I.data != 0) //No runtimes here.
 			result = result / I.data
 	set_pin_data(IC_OUTPUT, 1, result)
 
@@ -78,7 +78,7 @@
 	var/result = 0
 	for(var/datum/integrated_io/input/I in inputs)
 		I.pull_data()
-		if(isnum(I.data) && I.data != 0)
+		if(isnum_safe(I.data) && I.data != 0)
 			result = abs(result)
 	set_pin_data(IC_OUTPUT, 1, result)
 
@@ -94,7 +94,7 @@
 	var/inputs_used = 0
 	for(var/datum/integrated_io/input/I in inputs)
 		I.pull_data()
-		if(isnum(I.data))
+		if(isnum_safe(I.data))
 			inputs_used++
 			result = result + I.data
 
@@ -124,6 +124,6 @@
 	var/datum/integrated_io/L = inputs[1]
 	var/datum/integrated_io/H = inputs[2]
 
-	if(isnum(L.data) && isnum(H.data))
+	if(isnum_safe(L.data) && isnum_safe(H.data))
 		result = rand(L.data, H.data)
 	set_pin_data(IC_OUTPUT, 1, result)

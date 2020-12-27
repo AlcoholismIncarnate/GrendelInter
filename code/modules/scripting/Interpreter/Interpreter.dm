@@ -307,7 +307,7 @@
 			if(!S) S = curScope
 			if(!S) S = globalScope
 			ASSERT(istype(S))
-			if(istext(value) || isnum(value) || isnull(value))	value = new/node/expression/value/literal(value)
+			if(istext(value) || isnum_safe(value) || isnull(value))	value = new/node/expression/value/literal(value)
 			else if(!istype(value) && isobject(value))			value = new/node/expression/value/reference(value)
 			//TODO: check for invalid name
 			S.variables["[name]"] = value

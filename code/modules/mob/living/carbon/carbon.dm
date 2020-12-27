@@ -25,7 +25,7 @@
 	ingested.clear_reagents()
 	touching.clear_reagents()
 	set_nutrition(400)
-	set_hydration(400)
+	set_thirst(400)
 	..()
 
 /mob/living/carbon/Move(NewLoc, direct)
@@ -42,7 +42,7 @@
 			nut_removed *= 2
 			hyd_removed *= 2
 		adjust_nutrition(-nut_removed)
-		adjust_hydration(-hyd_removed)
+		adjust_thirst(-hyd_removed)
 
 		// Moving around increases germ_level faster
 		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
@@ -220,6 +220,11 @@
 				"<span class='notice'>You shake [src], but they do not respond... Maybe they have S.S.D?</span>")
 			else if(lying || src.sleeping)
 				src.sleeping = max(0,src.sleeping-5)
+				if(src.sleeping == 1 && src.in_bed == 1)
+					src.adjustFireLoss(-0.3)
+					src.adjustToxLoss(-0.1)
+					src.adjustBruteLoss(-0.4)
+					src.adjustHalLoss(-0.2)
 				if(src.sleeping == 0)
 					src.resting = 0
 				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!</span>", \
@@ -327,12 +332,9 @@
 		src.inertia_dir = get_dir(target, src)
 		step(src, inertia_dir)
 
-/*
-	if(istype(src.loc, /turf/space) || (src.flags & NOGRAV)) //they're in space, move em one space in the opposite direction
+	/*if(istype(src.loc, /turf/space) || (src.flags & NOGRAV)) //they're in space, move em one space in the opposite direction
 		src.inertia_dir = get_dir(target, src)
-		step(src, inertia_dir)
-*/
-
+		step(src, inertia_dir*/
 
 	item.throw_at(target, throw_range, item.throw_speed, src)
 
@@ -371,7 +373,7 @@
 	set category = "IC"
 
 	if(usr.sleeping)
-		to_chat(usr, "<span class='warning'>You are already sleeping</span>")
+		to_chat(usr, "<span class='warning'>You can't awaken from a dream you've already entered.</span>")
 		return
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
 		usr.sleeping = 40 //longish nap
@@ -509,9 +511,3 @@
 
 /mob/living/carbon/proc/adjust_nutrition(var/amt)
 	set_nutrition(nutrition + amt)
-
-/mob/living/carbon/proc/set_hydration(var/amt)
-	hydration = Clamp(amt, 0, initial(hydration))
-
-/mob/living/carbon/proc/adjust_hydration(var/amt)
-	set_hydration(hydration + amt)

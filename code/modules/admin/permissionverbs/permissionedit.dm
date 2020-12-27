@@ -87,7 +87,7 @@
 		log_query.Execute()
 		to_chat(usr, "<span class='notice'>New admin added.</span>")
 	else
-		if(!isnull(admin_id) && isnum(admin_id))
+		if(!isnull(admin_id) && isnum_safe(admin_id))
 			var/DBQuery/insert_query = dbcon.NewQuery("UPDATE `erro_admin` SET rank = '[new_rank]' WHERE id = [admin_id]")
 			insert_query.Execute()
 			var/DBQuery/log_query = dbcon.NewQuery("INSERT INTO `test`.`erro_admin_log` (`id` ,`datetime` ,`adminckey` ,`adminip` ,`log` ) VALUES (NULL , NOW( ) , '[usr.ckey]', '[usr.client.address]', 'Edited the rank of [adm_ckey] to [new_rank]');")
@@ -120,7 +120,7 @@
 	if(istext(new_permission))
 		new_permission = text2num(new_permission)
 
-	if(!istext(adm_ckey) || !isnum(new_permission))
+	if(!istext(adm_ckey) || !isnum_safe(new_permission))
 		return
 
 	var/DBQuery/select_query = dbcon.NewQuery("SELECT id, flags FROM erro_admin WHERE ckey = '[adm_ckey]'")

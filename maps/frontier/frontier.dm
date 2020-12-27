@@ -22,9 +22,6 @@
 	#include "frontier-4.dmm"
 	#include "frontier-5.dmm"
 
-
-	#include "../shared/exodus_torch/_include.dm"
-
 	#include "../../code/modules/lobby_music/generic_songs.dm"
 
 	#include "../away/mining/mining.dm"

@@ -57,7 +57,7 @@
 	var/active = get_pin_data(IC_INPUT, 1)
 	var/range = get_pin_data(IC_INPUT, 2)
 
-	var/do_activate = isnum(active) && active
+	var/do_activate = isnum_safe(active) && active
 	var/turn_on = !proximity_trigger.is_active() && do_activate
 	var/turn_off = proximity_trigger.is_active() && !do_activate
 
@@ -65,7 +65,7 @@
 	//  As the time this code was written on_data_written() is called once per pin write instead of after all pins have been written but this is the future proof variant.
 	if(turn_off)
 		proximity_trigger.unregister_turfs()
-	if(isnum(range))
+	if(isnum_safe(range))
 		range = between(min_range, range, max_range)
 		proximity_trigger.set_range(range)
 	if(turn_on)
@@ -117,7 +117,7 @@
 /obj/item/integrated_circuit/sensor/proximity/ir/on_data_written()
 	..()
 	var/visible_beam = get_pin_data(IC_INPUT, 3)
-	if(isnum(visible_beam))
+	if(isnum_safe(visible_beam))
 		var/new_beam_visibility = !!visible_beam
 		if(current_beam_visibility != new_beam_visibility)
 			current_beam_visibility = new_beam_visibility

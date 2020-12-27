@@ -129,7 +129,7 @@
 /obj/item/weapon/material/sword/xomsword
 	name = "old sword"
 	desc = "A very odd looking sword made of some sort of metal."
-	icon_state = "xomsword"
+	icon_state = "xomblade"
 	item_state = "longsword"
 	force_divisor = 0.3
 	block_chance = 10
@@ -216,6 +216,21 @@
 	parry_sounds = list('sound/weapons/blade_parry1.ogg', 'sound/weapons/blade_parry2.ogg', 'sound/weapons/blade_parry3.ogg')
 	drop_sound = 'sound/items/drop_sword.ogg'
 
+/obj/item/weapon/material/sword/bonesword
+	name = "bone sword"
+	desc = "A medium sized sword made of flesh and bone."
+	icon_state = "bonesword"
+	item_state = "longsword"
+	force_divisor = 0.3
+	block_chance = 20
+	w_class = ITEM_SIZE_HUGE
+	drawsound = 'sound/items/unholster_sword02.ogg'
+	equipsound = 'sound/items/holster_sword1.ogg'
+	sharpness = 15
+	weapon_speed_delay = 24
+	parry_sounds = list('sound/weapons/blade_parry1.ogg', 'sound/weapons/blade_parry2.ogg', 'sound/weapons/blade_parry3.ogg')
+	drop_sound = 'sound/items/drop_sword.ogg'
+
 /obj/item/weapon/material/sword/broadsword
 	name = "broad sword"
 	desc = "A huge two handed sword."
@@ -288,6 +303,21 @@
 	equipsound = 'sound/items/holster_sword1.ogg'
 	sharpness = 25
 	weapon_speed_delay = 15
+	parry_sounds = list('sound/weapons/blade_parry1.ogg', 'sound/weapons/blade_parry2.ogg', 'sound/weapons/blade_parry3.ogg')
+	drop_sound = 'sound/items/drop_sword.ogg'
+
+/obj/item/weapon/material/sword/lacusia
+	name = "lacusia"
+	desc = "A common steel sword."
+	icon_state = "lacusia"
+	item_state = "sabre"
+	force_divisor = 0.4
+	block_chance = 50
+	w_class = ITEM_SIZE_HUGE
+	drawsound = 'sound/items/unholster_sword02.ogg'
+	equipsound = 'sound/items/holster_sword1.ogg'
+	sharpness = 20
+	weapon_speed_delay = 14
 	parry_sounds = list('sound/weapons/blade_parry1.ogg', 'sound/weapons/blade_parry2.ogg', 'sound/weapons/blade_parry3.ogg')
 	drop_sound = 'sound/items/drop_sword.ogg'
 
@@ -397,6 +427,24 @@
 	equipsound = 'sound/items/holster_sword1.ogg'
 	sharpness = 0
 	weapon_speed_delay = 18
+	drop_sound = 'sound/items/drop_sword.ogg'
+	sharp = 0
+	edge = 0
+
+/obj/item/weapon/material/sword/steelhammer
+	name = "steel hammer"
+	desc = "A blunt force weapon. You do not want to get hit with this."
+	icon_state = "hammer"
+	item_state = "mace"
+	hitsound = "bash1.ogg"
+	force_divisor = 0.8
+	block_chance = 10
+	attack_verb = list("bashed", "smashed", "slammed", "smacked")
+	w_class = ITEM_SIZE_NORMAL
+	drawsound = 'sound/items/unholster_sword02.ogg'
+	equipsound = 'sound/items/holster_sword1.ogg'
+	sharpness = 0
+	weapon_speed_delay = 40
 	drop_sound = 'sound/items/drop_sword.ogg'
 	sharp = 0
 	edge = 0

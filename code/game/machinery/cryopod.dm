@@ -297,11 +297,7 @@
 
 //Lifted from Unity stasis.dm and refactored. ~Zuhayr
 /obj/machinery/cryopod/Process()
-	playsound(src, 'sound/machines/cryo2.ogg', 65, 0)
 	if(occupant)
-		if(applies_stasis && iscarbon(occupant))
-			var/mob/living/carbon/C = occupant
-			C.SetStasis(3)
 
 		//Allow a ten minute gap between entering the pod and actually despawning.
 		if(world.time - time_entered < time_till_despawn)
@@ -471,7 +467,7 @@
 	if(usr.stat != 0)
 		return
 
-	icon_state = base_icon_state
+
 
 	//Eject any items that aren't meant to be in the pod.
 	var/list/items = src.contents
@@ -480,9 +476,10 @@
 
 	for(var/obj/item/W in items)
 		W.forceMove(get_turf(src))
-
 	src.go_out()
+	icon_state = base_icon_state
 	add_fingerprint(usr)
+
 
 	SetName(initial(name))
 	return
@@ -518,22 +515,28 @@
 		set_occupant(usr)
 
 		src.add_fingerprint(usr)
+		playsound(src, 'sound/machines/cryoenter.ogg', 40)
 
 	return
 
 /obj/machinery/cryopod/proc/go_out()
 
 	if(!occupant)
+		playsound(src, 'sound/machines/button11.ogg', 40)
 		return
 
-	if(occupant.client)
-		occupant.client.eye = src.occupant.client.mob
-		occupant.client.perspective = MOB_PERSPECTIVE
+	if(do_after(usr, 30, src))
+		if(occupant.client)
+			occupant.client.eye = src.occupant.client.mob
+			occupant.client.perspective = MOB_PERSPECTIVE
 
-	occupant.forceMove(get_turf(src))
-	set_occupant(null)
 
-	icon_state = base_icon_state
+
+		occupant.forceMove(get_turf(src))
+		playsound(src, 'sound/machines/cryoexit.ogg', 40)
+		set_occupant(null)
+
+		icon_state = base_icon_state
 
 	return
 
@@ -545,8 +548,6 @@
 
 	occupant.stop_pulling()
 	if(occupant.client)
-		to_chat(occupant, "<span class='notice'>[on_enter_occupant_message]</span>")
-		to_chat(occupant, "<span class='notice'><b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b></span>")
 		occupant.client.perspective = EYE_PERSPECTIVE
 		occupant.client.eye = src
 	occupant.forceMove(src)

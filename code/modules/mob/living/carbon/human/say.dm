@@ -1,9 +1,11 @@
 /mob/living/carbon/human/say(var/message, var/datum/language/speaking = null, whispering)
 	var/alt_name = ""
+	if(name != rank_prefix_name(GetVoice()))
+		alt_name = null
 	if(name != GetVoice())
 		if(get_id_name("Unknown") != GetVoice() && get_id_name("Unknown") != "Unknown")
 			alt_name = "(as [get_id_name("Unknown")])"
-		
+
 		else if(get_id_name("Unknown") == "Unknown")
 			SetName(get_id_name("Unknown"))
 
@@ -24,7 +26,7 @@
 	if(!isSynthetic() && need_breathe() && failed_last_breath && !snowflake_speak)
 		var/obj/item/organ/internal/lungs/L = internal_organs_by_name[species.breathing_organ]
 		if(L.breath_fail_ratio > 0.9)
-			if(world.time < L.last_failed_breath + 2 MINUTES) //if we're in grace suffocation period, give it up for last words
+			if(world.time < L.last_failed_breath + 30 SECONDS) //if we're in grace suffocation period, give it up for last words
 				to_chat(src, "<span class='warning'>You use your remaining air to say something!</span>")
 				L.last_failed_breath = world.time - 2 MINUTES
 				return ..(message, alt_name = alt_name, speaking = speaking)

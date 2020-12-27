@@ -43,7 +43,7 @@
 
 /obj/item/integrated_circuit/manipulation/injector/proc/inject_amount()
 	var/amount = get_pin_data(IC_INPUT, 2)
-	if(isnum(amount))
+	if(isnum_safe(amount))
 		return clamp(amount, 0, 30)
 
 /obj/item/integrated_circuit/manipulation/injector/do_work()
@@ -89,7 +89,7 @@
 
 /obj/item/integrated_circuit/manipulation/reagent_pump/on_data_written()
 	var/amount = get_pin_data(IC_INPUT, 3)
-	if(isnum(amount))
+	if(isnum_safe(amount))
 		transfer_amount = clamp(amount, 0, 50)
 
 /obj/item/integrated_circuit/manipulation/reagent_pump/do_work()
@@ -195,7 +195,7 @@
 
 /obj/item/integrated_circuit/manipulation/locomotion/electronic/circuit_move(var/obj/item/moving_object)
 	var/datum/integrated_io/wanted_dir = inputs[1]
-	if(isnum(wanted_dir.data))
+	if(isnum_safe(wanted_dir.data))
 		step(moving_object, wanted_dir.data)
 
 /obj/item/integrated_circuit/manipulation/grenade
@@ -246,7 +246,7 @@
 /obj/item/integrated_circuit/manipulation/grenade/do_work()
 	if(attached_grenade && !attached_grenade.active)
 		var/datum/integrated_io/detonation_time = inputs[1]
-		if(isnum(detonation_time.data) && detonation_time.data > 0)
+		if(isnum_safe(detonation_time.data) && detonation_time.data > 0)
 			attached_grenade.det_time = between(1, detonation_time.data, 12) SECONDS
 		attached_grenade.activate()
 		var/atom/holder = loc
@@ -297,7 +297,7 @@
 		playsound(src, 'sound/effects/sparks2.ogg', 50, 1)
 		return
 
-	if(isnum(step_dir) && (!step_dir || (step_dir in GLOB.cardinal)))
+	if(isnum_safe(step_dir) && (!step_dir || (step_dir in GLOB.cardinal)))
 		rift_location = get_step(rift_location, step_dir) || rift_location
 	else
 		rift_location = get_step(rift_location, dir) || rift_location

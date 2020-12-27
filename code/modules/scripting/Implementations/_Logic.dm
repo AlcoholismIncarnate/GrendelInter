@@ -26,7 +26,7 @@
 // Clone of list[]
 /proc/n_listpos(var/list/L, var/pos, var/value)
 	if(!istype(L, /list)) return
-	if(isnum(pos))
+	if(isnum_safe(pos))
 		if(!value)
 			if(L.len >= pos)
 				return L[pos]
@@ -114,7 +114,7 @@
 
 // Clone of copytext()
 /proc/docopytext(var/string, var/start = 1, var/end = 0)
-	if(istext(string) && isnum(start) && isnum(end))
+	if(istext(string) && isnum_safe(start) && isnum_safe(end))
 		if(start > 0)
 			return copytext(string, start, end)
 
@@ -170,7 +170,7 @@ proc/string_explode(var/string, var/separator)
 		return splittext(string, separator)
 
 proc/n_repeat(var/string, var/amount)
-	if(istext(string) && isnum(amount))
+	if(istext(string) && isnum_safe(amount))
 		var/i
 		var/newstring = ""
 		if(length(newstring)*amount >=1000)
@@ -200,39 +200,39 @@ proc/n_str2num(var/string)
 
 // Number shit
 proc/n_num2str(var/num)
-	if(isnum(num))
+	if(isnum_safe(num))
 		return num2text(num)
 
 // Squareroot
 proc/n_sqrt(var/num)
-	if(isnum(num))
+	if(isnum_safe(num))
 		return sqrt(num)
 
 // Magnitude of num
 proc/n_abs(var/num)
-	if(isnum(num))
+	if(isnum_safe(num))
 		return abs(num)
 
 // Round down
 proc/n_floor(var/num)
-	if(isnum(num))
+	if(isnum_safe(num))
 		return round(num)
 
 // Round up
 proc/n_ceil(var/num)
-	if(isnum(num))
+	if(isnum_safe(num))
 		return round(num)+1
 
 // Round to nearest integer
 proc/n_round(var/num)
-	if(isnum(num))
+	if(isnum_safe(num))
 		if(num-round(num)<0.5)
 			return round(num)
 		return n_ceil(num)
 
 // Clamps N between min and max
 proc/n_clamp(var/num, var/min=-1, var/max=1)
-	if(isnum(num)&&isnum(min)&&isnum(max))
+	if(isnum_safe(num)&&isnum_safe(min)&&isnum_safe(max))
 		if(num<=min)
 			return min
 		if(num>=max)
@@ -241,7 +241,7 @@ proc/n_clamp(var/num, var/min=-1, var/max=1)
 
 // Returns 1 if N is inbetween Min and Max
 proc/n_inrange(var/num, var/min=-1, var/max=1)
-	if(isnum(num)&&isnum(min)&&isnum(max))
+	if(isnum_safe(num)&&isnum_safe(min)&&isnum_safe(max))
 		return ((min <= num) && (num <= max))
 // END OF BY DONKIE :(
 

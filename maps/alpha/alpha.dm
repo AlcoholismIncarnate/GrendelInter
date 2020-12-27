@@ -17,9 +17,8 @@
 
 	//#include "job/jobs.dm"
 	#include "../shared/job/jobs.dm"
-	#include "../shared/job/alpha/jobs.dm"
-
-	#include "../../code/modules/lobby_music/soh.dm"
+	
+	#include "../../code/modules/lobby_music/generic_songs.dm"
 
 	#define using_map_DATUM /datum/map/alpha
 

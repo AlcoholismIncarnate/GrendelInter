@@ -31,12 +31,10 @@
 // Return the appropriate QDEL_HINT; in most cases this is QDEL_HINT_QUEUE.
 /datum/proc/Destroy(force=FALSE)
 	tag = null
-	SSnano && SSnano.close_uis(src)
 	weakref = null // Clear this reference to ensure it's kept for as brief duration as possible.
 
-	//nano && nano.close_uis(src)
+	SSnano && SSnano.close_uis(src)
 
-/*
 	var/list/timers = active_timers
 	active_timers = null
 	for(var/thing in timers)
@@ -44,7 +42,6 @@
 		if (timer.spent)
 			continue
 		qdel(timer)
-*/
 
 	if(extensions)
 		for(var/expansion_key in extensions)

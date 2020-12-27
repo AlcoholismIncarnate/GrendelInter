@@ -32,6 +32,6 @@
 	var/y2 = get_pin_data(IC_INPUT, 5)
 	var/z2 = get_pin_data(IC_INPUT, 6)
 
-	set_pin_data(IC_OUTPUT, 1, isnum(x1) && isnum(x2) && (x1 - x2))
-	set_pin_data(IC_OUTPUT, 2, isnum(y1) && isnum(y2) && (y1 - y2))
-	set_pin_data(IC_OUTPUT, 3, isnum(z1) && isnum(z2) && (z1 - z2))
+	set_pin_data(IC_OUTPUT, 1, isnum_safe(x1) && isnum_safe(x2) && (x1 - x2))
+	set_pin_data(IC_OUTPUT, 2, isnum_safe(y1) && isnum_safe(y2) && (y1 - y2))
+	set_pin_data(IC_OUTPUT, 3, isnum_safe(z1) && isnum_safe(z2) && (z1 - z2))

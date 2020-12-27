@@ -152,6 +152,11 @@
 	var/blinded = null
 	var/ear_deaf = null		//Carbon
 
+	var/hanging = FALSE
+	var/hanging_prev = FALSE
+
+	var/icon_scale = 1
+
 //The last mob/living/carbon to push/drag/grab this mob (mostly used by slimes friend recognition)
 	var/mob/living/carbon/LAssailant = null
 

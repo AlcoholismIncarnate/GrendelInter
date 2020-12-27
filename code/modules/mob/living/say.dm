@@ -165,6 +165,25 @@ proc/get_radio_key_from_channel(var/channel)
 			return say_dead(message)
 		return
 
+	if(GLOB.in_character_filter.len)
+		if(findtext(message, config.ic_filter_regex))
+			// let's try to be a bit more informative!
+			var/warning_message = ""
+			var/list/words = splittext(message, " ")
+			var/cringe = ""
+			for (var/word in words)
+				if (findtext(word, config.ic_filter_regex))
+					warning_message = "[warning_message]"
+					cringe += ""
+				else
+					warning_message = "[warning_message]"
+
+
+			warning_message = trim(warning_message)
+			to_chat(src, "<span class='warning'>[warning_message]&quot;</span>")
+			//log_and_message_admins("[src] just tried to say cringe: [cringe]", src) //Uncomment this if you want to keep tabs on who's saying cringe words.
+			return
+
 	var/prefix = copytext(message,1,2)
 	if(prefix == get_prefix_key(/decl/prefix/custom_emote))
 		return emote(copytext(message,2))
@@ -286,15 +305,12 @@ proc/get_radio_key_from_channel(var/channel)
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"h[speech_bubble_test]")
 
-	// VOREStation Port - Attempt Multi-Z Talking
 	for (var/atom/movable/AM in get_above_oo())
  	var/turf/ST = get_turf(AM)
 		if(ST)
 			get_mobs_and_objs_in_view_fast(ST, world.view, listening, listening_obj, /datum/client_preference/ghost_ears)
 			var/image/z_speech_bubble = image('icons/mob/talk.dmi', AM, "h[speech_bubble_test]")
 			QDEL_IN(z_speech_bubble, 30)
-
-	// VOREStation Port End
 
 	var/list/speech_bubble_recipients = list()
 	for(var/mob/M in listening)

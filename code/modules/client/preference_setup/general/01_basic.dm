@@ -3,7 +3,7 @@ datum/preferences
 	var/be_random_name = 0				//whether we are a random name every round
 	var/gender = MALE					//gender of character (well duh)
 	var/age = 30						//age of character
-	var/spawnpoint = "Default" 			//where this character will spawn (0-2).
+	var/spawnpoint = "Cryogenic Storage" 			//where this character will spawn (0-2).
 	var/metadata = ""
 
 /datum/category_item/player_setup_item/general/basic
@@ -67,6 +67,9 @@ datum/preferences
 		if (!isnull(raw_name) && CanUseTopic(user))
 			var/new_name = sanitize_name(raw_name, pref.species)
 			if(new_name)
+				if(GLOB.in_character_filter.len) //If you name yourself brazil, you're getting a random name.
+					if(findtext(new_name, config.ic_filter_regex))
+						new_name = random_name(pref.gender, pref.species)
 				pref.real_name = new_name
 				return TOPIC_REFRESH
 			else

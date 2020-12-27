@@ -25,7 +25,7 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 
 //This can be called if either we're doing whole sound setup ourselves or it will be as part of from-file sound setup
 /decl/sound_player/proc/PlaySoundDatum(var/atom/source, var/sound_id, var/sound/sound, var/range, var/prefer_mute, var/ignore_vis = FALSE, var/streaming)
-	var/token_type = isnum(sound.environment) ? /datum/sound_token : /datum/sound_token/static_environment
+	var/token_type = isnum_safe(sound.environment) ? /datum/sound_token : /datum/sound_token/static_environment
 	return new token_type(source, sound_id, sound, range, prefer_mute, ignore_vis, streaming)
 
 /decl/sound_player/proc/PlayLoopingSound(var/atom/source, var/sound_id, var/sound, var/volume, var/range, var/falloff = 1, var/echo, var/frequency, var/prefer_mute, var/ignore_vis = FALSE, var/streaming)
@@ -113,7 +113,7 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 
 	if(sound.repeat) // Non-looping sounds may not reserve a sound channel due to the risk of not hearing when someone forgets to stop the token
 		var/channel = GLOB.sound_player.PrivGetChannel(src) //Attempt to find a channel
-		if(!isnum(channel))
+		if(!isnum_safe(channel))
 			CRASH("All available sound channels are in active use.")
 		sound.channel = channel
 	else
@@ -259,7 +259,7 @@ datum/sound_token/proc/PrivAddListener(var/atom/listener)
 /datum/sound_token/proc/PrivIsValidEnvironment(var/environment)
 	if(islist(environment) && length(environment) != 23)
 		return FALSE
-	if(!isnum(environment) || environment < 0 || environment > 25)
+	if(!isnum_safe(environment) || environment < 0 || environment > 25)
 		return FALSE
 	return TRUE
 

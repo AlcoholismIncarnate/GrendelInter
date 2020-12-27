@@ -178,27 +178,27 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	value = param_value
 
 /datum/feedback_variable/proc/inc(var/num = 1)
-	if(isnum(value))
+	if(isnum_safe(value))
 		value += num
 	else
 		value = text2num(value)
-		if(isnum(value))
+		if(isnum_safe(value))
 			value += num
 		else
 			value = num
 
 /datum/feedback_variable/proc/dec(var/num = 1)
-	if(isnum(value))
+	if(isnum_safe(value))
 		value -= num
 	else
 		value = text2num(value)
-		if(isnum(value))
+		if(isnum_safe(value))
 			value -= num
 		else
 			value = -num
 
 /datum/feedback_variable/proc/set_value(var/num)
-	if(isnum(num))
+	if(isnum_safe(num))
 		value = num
 
 /datum/feedback_variable/proc/get_value()
@@ -337,7 +337,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 	while(query.NextRow())
 		round_id = query.item[1]
 
-	if(!isnum(round_id))
+	if(!isnum_safe(round_id))
 		round_id = text2num(round_id)
 	round_id++
 

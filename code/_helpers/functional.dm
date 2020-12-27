@@ -30,7 +30,7 @@
 		to_chat(feedback_receiver, "<span class='warning'>Value must be an atom.</span>")
 
 /proc/is_num_predicate(var/value, var/feedback_receiver)
-	. = isnum(value)
+	. = isnum_safe(value)
 	if(!. && feedback_receiver)
 		to_chat(feedback_receiver, "<span class='warning'>Value must be a numeral.</span>")
 

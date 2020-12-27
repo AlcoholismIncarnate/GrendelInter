@@ -357,8 +357,21 @@
 	if(busy)
 		to_chat(user, "<span class='warning'>Someone's already washing here.</span>")
 		return
-
-	to_chat(usr, "<span class='notice'>You start washing your hands.</span>")
+	if (ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.thirst <= THIRST_LEVEL_THIRSTY)
+			var/amount_per_transfer_from_this = 3
+			var/datum/reagents/reagents = create_reagents(amount_per_transfer_from_this )
+			reagents.add_reagent(/datum/reagent/water, amount_per_transfer_from_this)
+			to_chat(usr, "<span class='notice'>You use your hands to gulp down water.</span>")
+			reagents.trans_to_mob(user, issmall(user) ? ceil(amount_per_transfer_from_this/2) : amount_per_transfer_from_this, CHEM_INGEST)
+			user.bladder += amount_per_transfer_from_this //For peeing
+			H.adjust_thirst(amount_per_transfer_from_this * 5)
+			playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
+		else
+			to_chat(usr, "<span class='notice'>You start washing your hands.</span>")
+	else
+		to_chat(usr, "<span class='notice'>You start washing your hands.</span>")
 
 	busy = 1
 	sleep(40)

@@ -43,7 +43,7 @@
 
 	holodeck_supported_programs = list(
 
-		"SabbathMainPrograms" = list(
+		"TorchMainPrograms" = list(
 			"Empty Court"       = "emptycourt",
 			"Basketball Court"  = "basketball",
 			"Thunderdome Court" = "thunderdomecourt",
@@ -62,7 +62,7 @@
 
 	holodeck_restricted_programs = list(
 
-		"SabbathMainPrograms" = list(
+		"TorchMainPrograms" = list(
 			"Wildlife Simulation" = "wildlifecarp"
 		)
 

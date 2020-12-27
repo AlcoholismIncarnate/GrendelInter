@@ -124,6 +124,12 @@ proc/conToToxinModifier(var/constitution, var/w_class)
 		stats[stat] = pick(rand_stats)
 		rand_stats.Remove(stats[stat])
 
+/mob/proc/newgeneratestats(var/stre1, var/stre2, var/dext1, var/dext2, var/int1, var/int2, var/helt1, var/helt2)
+	stats[STAT_ST] = rand(stre1, stre2)
+	stats[STAT_DX] = rand(dext1, dext2)
+	stats[STAT_IQ] = rand(int1, int2)
+	stats[STAT_HT] = rand(helt1, helt2)
+
 /mob/proc/adjustStrength(var/num)
 	stats[STAT_ST] += num
 
@@ -236,6 +242,11 @@ proc/conToToxinModifier(var/constitution, var/w_class)
 	if(engineering_val)
 		engineering = engineering_val
 */
+
+/mob/proc/buff_combatskills()
+	skills[SKILL_MELEE] = skills[SKILL_MELEE] + rand(30, 60)
+	skills[SKILL_RANGE] = skills[SKILL_RANGE] + rand(30, 60)
+
 /mob/living/carbon/human/verb/check_skills()//Debug tool for checking skills until I add the icon for it to the HUD.
 	set name = "Check Skills"
 	set category = "IC"

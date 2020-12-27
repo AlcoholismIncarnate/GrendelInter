@@ -2,7 +2,6 @@
 	name = "chair"
 	desc = "You sit in this, either by will or force."
 	icon_state = "chair_preview"
-	color = "#666666"
 	base_icon = "chair"
 	buckle_dir = 0
 	buckle_lying = 0 //force people to sit up in chairs when buckled
@@ -262,13 +261,13 @@
 	icon_state = "wooden_chair_wings_preview"
 
 /obj/structure/bed/chair/wood/wood
-	name = "wooden chair"
+	name = "chair"
 	desc = "A comfy wooden chair to sit in."
 	base_icon = "wood_chair1"
 	icon_state = "wood_chair1"
 
 /obj/structure/bed/chair/wood/wood1
-	name = "wooden chair"
+	name = "chair"
 	desc = "A comfy wooden chair to sit in."
 	base_icon = "wood_chair2"
 	icon_state = "wood_chair2"

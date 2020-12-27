@@ -125,6 +125,16 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	ammo_type = /obj/item/ammo_casing/a50
 
+/obj/item/weapon/gun/projectile/revolver/ct2
+	name = "CT-2 .50"
+	desc = "A heavy revolver chambered in (.50)."
+	icon_state = "a44rev"
+	item_state = "pistol1"
+	max_shells = 6
+	caliber = ".50"
+	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
+	ammo_type = /obj/item/ammo_casing/a50
+
 /obj/item/weapon/gun/projectile/revolver/colony/revolver
 	name = "Malice revolver"
 	desc = "A revolver produced on frontier colonies. Chambered in (9mm)."

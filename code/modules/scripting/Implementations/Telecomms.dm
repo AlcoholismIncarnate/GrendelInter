@@ -255,7 +255,7 @@ datum/signal
 		newsign.data["compression"] = 0
 		newsign.data["message"] = message
 		newsign.data["type"] = 2 // artificial broadcast
-		if(!isnum(freq))
+		if(!isnum_safe(freq))
 			freq = text2num(freq)
 		newsign.frequency = freq
 

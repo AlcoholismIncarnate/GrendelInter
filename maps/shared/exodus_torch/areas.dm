@@ -401,6 +401,7 @@
 /area/crew_quarters/sleep/cryo
 	name = "\improper Cryogenic Storage"
 	icon_state = "Sleep"
+	forced_ambience = list('sound/machines/cryo2.ogg')
 
 /area/hydroponics
 	name = "\improper Hydroponics"
@@ -533,3 +534,9 @@
 	name = "Abandoned Outpost"
 	icon_state = "dark"
 	forced_ambience = list('sound/ambience/hostile_space.ogg')
+
+/area/cyberspace
+	name = "Cyberspace"
+	icon_state = "thunder"
+	has_gravity = 1
+	forced_ambience = list('sound/ambience/hacker.ogg')

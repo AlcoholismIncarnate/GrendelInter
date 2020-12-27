@@ -1,13 +1,14 @@
 /decl/hierarchy/outfit/job/dreyfus/magistrate
 	name = OUTFIT_JOB_NAME("Magistrate")
-	l_ear = /obj/item/device/radio/headset/heads/captain
-	uniform = /obj/item/clothing/under/rank/magistrate
-	shoes = /obj/item/clothing/shoes/dress
+	l_ear = null
+	uniform = null
+	shoes = null
 	id_type = /obj/item/weapon/card/id/dreyfus/gold
+	id_slot = slot_wear_mask
 	pda_type = /obj/item/device/pda/captain
-	gloves = /obj/item/clothing/gloves/white
-	head = /obj/item/clothing/head/crown//FIT FOR A FUCKING KING
-	suit = /obj/item/clothing/suit/robes
+	pda_slot = slot_wear_id
+	head = null//FIT FOR A FUCKING retard
+	suit = null
 
 /decl/hierarchy/outfit/job/dreyfus/countess
 	name = OUTFIT_JOB_NAME("Countess")
@@ -23,10 +24,6 @@
 /decl/hierarchy/outfit/job/dreyfus/adjoint
 	name = OUTFIT_JOB_NAME("Directeur Adjoint")
 	l_ear = /obj/item/device/radio/headset/heads/hop
-	uniform = /obj/item/clothing/under/rank/internalaffairs/plain/nt
-//	suit = /obj/item/clothing/suit/storage/toggle/internalaffairs
-	shoes = /obj/item/clothing/shoes/dress
-	l_hand = /obj/item/weapon/storage/briefcase
 	id_type = /obj/item/weapon/card/id/dreyfus/hop
 	pda_type = /obj/item/device/pda/heads/hop
 
@@ -69,25 +66,23 @@
 
 /decl/hierarchy/outfit/job/science/superviseur
 	name = OUTFIT_JOB_NAME("Superviseur")
-	l_ear = /obj/item/device/radio/headset/heads/rd
-	r_ear = /obj/item/device/radio/headset/heads/cmo
-	uniform = /obj/item/clothing/under/rank/research_director
-	shoes = /obj/item/clothing/shoes/brown
-	l_hand = /obj/item/weapon/clipboard
+	l_ear = null
+	uniform = null
+	shoes = null
+	head = null
+	suit = null
 	id_type = /obj/item/weapon/card/id/science/head
 	pda_type = /obj/item/device/pda/heads/rd
 
 /decl/hierarchy/outfit/job/security/peacekeeper
 	name = OUTFIT_JOB_NAME("Peacekeeper")
-	head = /obj/item/clothing/head/helmet/steelhelm
-	uniform = /obj/item/clothing/under/secdp
-	suit = /obj/item/clothing/suit/vest/civilian/bulletproof
-	shoes = /obj/item/clothing/shoes/jackboots
-	belt = /obj/item/weapon/melee/classic_baton//So they at least start off with some kind of weapon to defend themselves.
-	r_pocket = /obj/item/weapon/handcuffs
+	l_ear = null
+	uniform = null
+	shoes = null
+	head = null
+	suit = null
 	id_type = /obj/item/weapon/card/id/dreyfus/sec
 	pda_type = /obj/item/device/pda/security
-	pda_slot = slot_l_store //So they don't lose their PDA.
 
 /*
 /decl/hierarchy/outfit/job/security/peacekeeper/post_equip(var/mob/living/carbon/human/H)
@@ -105,10 +100,11 @@
 
 /decl/hierarchy/outfit/job/security/head_peacekeeper
 	name = OUTFIT_JOB_NAME("Head Peacekeeper")
-	head = /obj/item/clothing/head/HoS
-	glasses = /obj/item/clothing/glasses/eyepatch/hud/security
-	uniform = /obj/item/clothing/under/rank/head_of_security/corp
-	shoes = /obj/item/clothing/shoes/jackboots
+	l_ear = null
+	uniform = null
+	shoes = null
+	head = null
+	suit = null
 	id_type = /obj/item/weapon/card/id/dreyfus/hos
 	pda_type = /obj/item/device/pda/heads/hos
 

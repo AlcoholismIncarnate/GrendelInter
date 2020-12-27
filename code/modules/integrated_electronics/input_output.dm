@@ -63,7 +63,7 @@
 /obj/item/integrated_circuit/input/numberpad/OnICTopic(href_list, user)
 	if(href_list["enter_number"])
 		var/new_input = input(user, "Enter a number, please.","Number pad") as null|num
-		if(isnum(new_input) && CanInteract(user, GLOB.physical_state))
+		if(isnum_safe(new_input) && CanInteract(user, GLOB.physical_state))
 			set_pin_data(IC_OUTPUT, 1, new_input)
 			activate_pin(1)
 		return IC_TOPIC_REFRESH
@@ -221,7 +221,7 @@
 
 /obj/item/integrated_circuit/input/signaler/on_data_written()
 	var/datum/integrated_io/new_freq = inputs[1]
-	if(isnum(new_freq.data) && new_freq.data > 0)
+	if(isnum_safe(new_freq.data) && new_freq.data > 0)
 		set_frequency(new_freq.data)
 
 /obj/item/integrated_circuit/input/signaler/proc/create_signal()
@@ -257,7 +257,7 @@
 	if(signal.encryption)
 		var/datum/integrated_io/cur_code = inputs[2]
 		var/code = 0
-		if(isnum(cur_code.data))
+		if(isnum_safe(cur_code.data))
 			code = cur_code.data
 		if(signal.encryption != code)
 			return 0
@@ -535,7 +535,7 @@
 	var/datum/integrated_io/B = inputs[3]
 	var/datum/integrated_io/brightness = inputs[4]
 
-	if(isnum(R.data) && isnum(G.data) && isnum(B.data) && isnum(brightness.data))
+	if(isnum_safe(R.data) && isnum_safe(G.data) && isnum_safe(B.data) && isnum_safe(brightness.data))
 		R.data = clamp(R.data, 0, 255)
 		G.data = clamp(G.data, 0, 255)
 		B.data = clamp(B.data, 0, 255)
@@ -590,7 +590,7 @@
 	var/datum/integrated_io/ID = inputs[1]
 	var/datum/integrated_io/vol = inputs[2]
 	var/datum/integrated_io/frequency = inputs[3]
-	if(istext(ID.data) && isnum(vol.data) && (!frequency.data || isnum(frequency.data)))
+	if(istext(ID.data) && isnum_safe(vol.data) && (!frequency.data || isnum_safe(frequency.data)))
 		var/selected_sound = sounds[ID.data]
 		if(!selected_sound)
 			return

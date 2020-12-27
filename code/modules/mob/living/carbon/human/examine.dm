@@ -35,20 +35,17 @@
 	if(get_dist(user, src) > 3)
 		skipears = 1
 
-	var/list/msg = list("<span class='info'>*---------*\nOh, this is ")
+	var/list/msg = list("<div class='firstdiv'><div class='box'><span class='info'>Oh, this is ")
 
 	var/datum/gender/T = gender_datums[get_gender()]
 	if(skipjumpsuit && skipface) //big suits/masks/helmets make it hard to tell their gender
 		T = gender_datums[PLURAL]
-	else
-		if(icon)
-			msg += "[icon2html(src, user)]" //fucking BYOND: this should stop dreamseeker crashing if we -somehow- examine somebody before their icon is generated
 
 	if(!T)
 		// Just in case someone VVs the gender to something strange. It'll runtime anyway when it hits usages, better to CRASH() now with a helpful message.
 		CRASH("Gender datum was null; key was '[(skipjumpsuit && skipface) ? PLURAL : gender]'")
 
-	msg += "<EM>[src.name]</EM>"
+	msg += "<EM>[src.name]!</EM>"
 
 	var/is_synth = isSynthetic()
 	if(!(skipjumpsuit && skipface))
@@ -63,11 +60,14 @@
 
 	msg += "<br>"
 
+
+
 	if((!skipface || wear_id) && src != user)
 		var/mob/living/carbon/human/H = user
 		var/classdesc = get_social_description(H)
-
-		msg += "[T.He] [T.is] [get_social_class()]. [classdesc]\n"
+		if(src?.mind?.assigned_role)
+			msg += "I always knew [T.him] as the <b>[src.mind.assigned_role]</b>.\n"
+		msg += "[T.He] [T.is] [get_social_class()]. [classdesc]\n\n"
 
 	//uniform
 	if(w_uniform && !skipjumpsuit)
@@ -371,7 +371,7 @@
 
 	if(print_flavor_text()) msg += "[print_flavor_text()]\n"
 
-	msg += "*---------*</span><br>"
+	msg += "</span></div></div><br>"
 	msg += applying_pressure
 
 	if (pose)

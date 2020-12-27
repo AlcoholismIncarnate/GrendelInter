@@ -3,6 +3,7 @@
 /obj/effect/lobby_image
 	name = "Interpost Hague" // god bless us
 	desc = "This shouldn't be read."
+	mouse_opacity = 0
 	screen_loc = "WEST,SOUTH"
 
 /obj/effect/lobby_image/Initialize()
@@ -28,7 +29,7 @@
 	to_chat(src, "<div class='danger'>[game_id]</div>")
 
 	if(GAME_STATE <= RUNLEVEL_LOBBY)
-		to_world("<span class='notice'>LOBBY: [usr.key] has joined.</span>")
+		to_world("<div class='playerjoinbox'><span class='notice'>LOBBY: [usr.key] comes.</span></div>")
 
 	if(!mind)
 		mind = new /datum/mind(key)

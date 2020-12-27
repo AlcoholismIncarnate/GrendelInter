@@ -57,7 +57,7 @@
 	if(isnull(var_value))
 		to_chat(usr, "Unable to determine variable type.")
 
-	else if(isnum(var_value))
+	else if(isnum_safe(var_value))
 		to_chat(usr, "Variable appears to be <b>NUM</b>.")
 		default = "num"
 		dir = 1

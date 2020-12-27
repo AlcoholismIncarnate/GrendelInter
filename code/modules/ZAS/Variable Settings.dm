@@ -130,7 +130,7 @@ var/global/vs_control/vsc = new
 		if("[ch]_METHOD" in plc.vars)
 			how = plc.vars["[ch]_METHOD"]
 		else
-			if(isnum(vw))
+			if(isnum_safe(vw))
 				how = "Numeric"
 			else
 				how = "Text"
@@ -141,7 +141,7 @@ var/global/vs_control/vsc = new
 		if("[ch]_METHOD" in vars)
 			how = vars["[ch]_METHOD"]
 		else
-			if(isnum(vw))
+			if(isnum_safe(vw))
 				how = "Numeric"
 			else
 				how = "Text"
@@ -179,7 +179,7 @@ var/global/vs_control/vsc = new
 	for(var/V in settings)
 		var/newvalue
 		if("[V]_RANDOM" in vars)
-			if(isnum(vars["[V]_RANDOM"]))
+			if(isnum_safe(vars["[V]_RANDOM"]))
 				newvalue = prob(vars["[V]_RANDOM"])
 			else if(istext(vars["[V]_RANDOM"]))
 				newvalue = roll(vars["[V]_RANDOM"])
@@ -343,7 +343,7 @@ var/global/vs_control/vsc = new
 /pl_control/proc/Randomize(V)
 	var/newvalue
 	if("[V]_RANDOM" in vars)
-		if(isnum(vars["[V]_RANDOM"]))
+		if(isnum_safe(vars["[V]_RANDOM"]))
 			newvalue = prob(vars["[V]_RANDOM"])
 		else if(istext(vars["[V]_RANDOM"]))
 			var/txt = vars["[V]_RANDOM"]

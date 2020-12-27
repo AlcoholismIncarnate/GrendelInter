@@ -86,7 +86,7 @@
 			var/list/mouse_control = params2list(params)
 			var/mouse_x = text2num(mouse_control["icon-x"])
 			var/mouse_y = text2num(mouse_control["icon-y"])
-			if(isnum(mouse_x) && isnum(mouse_y))
+			if(isnum_safe(mouse_x) && isnum_safe(mouse_y))
 				if(mouse_x <= 16)
 					if(mouse_y <= 16)
 						painting_dir = WEST

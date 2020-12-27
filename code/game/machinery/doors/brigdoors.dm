@@ -1,6 +1,6 @@
 #define CHARS_PER_LINE 5
 #define FONT_SIZE "5pt"
-#define FONT_COLOR "#09f"
+#define FONT_COLOR "#7f59bd"
 #define FONT_STYLE "Arial Black"
 
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31

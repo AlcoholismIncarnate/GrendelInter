@@ -138,7 +138,7 @@ dmm_suite{
 				if(istext(A.vars[V])){
 					attributes_text += {"[V] = "[A.vars[V]]""}
 					}
-				else if(isnum(A.vars[V])||ispath(A.vars[V])){
+				else if(isnum_safe(A.vars[V])||ispath(A.vars[V])){
 					attributes_text += {"[V] = [A.vars[V]]"}
 					}
 				else if(isicon(A.vars[V])||isfile(A.vars[V])){

@@ -135,7 +135,7 @@ GLOBAL_DATUM_INIT(temp_reagents_holder, /obj, new)
 /* Holder-to-chemical */
 
 /datum/reagents/proc/add_reagent(var/reagent_type, var/amount, var/data = null, var/safety = 0)
-	if(!isnum(amount) || amount <= 0)
+	if(!isnum_safe(amount) || amount <= 0)
 		return 0
 
 	update_total()
@@ -168,7 +168,7 @@ GLOBAL_DATUM_INIT(temp_reagents_holder, /obj, new)
 	return 0
 
 /datum/reagents/proc/remove_reagent(var/reagent_type, var/amount, var/safety = 0)
-	if(!isnum(amount))
+	if(!isnum_safe(amount))
 		return 0
 	for(var/datum/reagent/current in reagent_list)
 		if(current.type == reagent_type)

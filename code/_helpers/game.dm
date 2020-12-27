@@ -6,6 +6,8 @@
     locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
   )
 
+#define SIGN(X) ((X<0)?-1:1)
+
 /proc/dopage(src,target)
 	var/href_list
 	var/href
@@ -295,8 +297,6 @@
 
 
 
-
-#define SIGN(X) ((X<0)?-1:1)
 
 proc
 	inLineOfSight(X1,Y1,X2,Y2,Z=1,PX1=16.5,PY1=16.5,PX2=16.5,PY2=16.5)
@@ -589,7 +589,7 @@ datum/projectile_data
 /proc/getviewsize(view)
 	var/viewX
 	var/viewY
-	if(isnum(view))
+	if(isnum_safe(view))
 		var/totalviewrange = 1 + 2 * view
 		viewX = totalviewrange
 		viewY = totalviewrange

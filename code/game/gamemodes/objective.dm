@@ -36,8 +36,6 @@ var/global/list/all_objectives = list()
 				target = possible_target
 				break
 
-
-
 /datum/objective/assassinate
 	find_target()
 		..()
@@ -869,3 +867,22 @@ var/global/list/all_objectives = list()
 		return 0
 	return rval
 
+/datum/objective/crusade
+	var/already_completed = 0
+
+	find_target()
+		..()
+		if(target && target.current)
+			explanation_text = "Convert the station with Deo Machina's power on your side. To convert, you need to make them scream unless they're not willing to peacefully convert themselves. Torture the inhabitants."
+		else
+			explanation_text = "Free Objective"
+		return target
+
+	check_completion()
+		if(already_completed)
+			return 1
+
+		for(var/mob/living/carbon/human/H in world)
+			if(H.religion == LEGAL_RELIGION && H.stat == 2)
+				return 1
+		return 0

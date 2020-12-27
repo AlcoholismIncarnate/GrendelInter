@@ -32,6 +32,7 @@
 	var/old_lighting_overlay = lighting_overlay
 	var/old_corners = corners
 	var/old_ao_neighbors = ao_neighbors
+	var/old_opaque_counter = opaque_counter
 
 //	log_debug("Replacing [src.type] with [N]")
 
@@ -51,7 +52,9 @@
 	for(var/atom/movable/A in old_contents)
 		A.forceMove(W)
 
-	W.opaque_counter = opaque_counter
+	W.opaque_counter = old_opaque_counter
+	W.RecalculateOpacity()
+
 
 	if(ispath(N, /turf/simulated))
 		if(old_fire)

@@ -7,15 +7,15 @@ html, body {
 	padding: 0;
 	margin: 0;
 	height: 100%;
-	color: #a4bad6;
+	color: #CCCCE2;
 }
 body {
 	background-image: url("chatbg.png");
 	background-size: 50%;
 	background-attachment: fixed;
-	font-family: Roboto Condensed, sans-serif;
+	font-family: Roboto Condensed;
 	font-size: 13px;
-	font-color: #a4bad6;
+	font-color: #CCCCE2;
 	line-height: 1.2;
 	overflow-x: hidden;
 	overflow-y: scroll;
@@ -247,12 +247,14 @@ a.popt {text-decoration: none;}
 ******************************************/
 
 /* MOTD */
-.motd {color: #a4bad6;	font-family: Arial, sans-serif;}
+.motd {color: #a4bad6;	font-family: Roboto Condensed;}
 .motd h1, .motd h2, .motd h3, .motd h4, .motd h5, .motd h6 {color: #a4bad6;	text-decoration: underline;}
 .motd a, .motd a:link, .motd a:visited, .motd a:active, .motd a:hover {color: #a4bad6;}
 
 /* ADD HERE FOR BOLD */
-.bold, .name, .prefix, .ooc, .looc, .adminooc, .admin, .medal, .yell {font-weight: bold;}
+.bold, .prefix, .ooc, .looc, .adminooc, .admin, .medal, .yell {font-weight: bold;}
+
+.name {font-weight: bold; font-size: 105%}
 
 /* ADD HERE FOR ITALIC */
 .italic, .italics, .emote {font-style: italic;}
@@ -260,7 +262,7 @@ a.popt {text-decoration: none;}
 /* OUTPUT COLORS */
 .highlight {background: yellow;}
 
-h1, h2, h3, h4, h5, h6	{color: #a4bad6;font-family: Georgia, Roboto Condensed, sans-serif;}
+h1, h2, h3, h4, h5, h6	{color: #a4bad6;font-family: Roboto Condensed;}
 
 em						{font-style: normal;	font-weight: bold;}
 
@@ -313,7 +315,7 @@ em						{font-style: normal;	font-weight: bold;}
 .inqradio				{color: #696969;}
 /* Miscellaneous */
 .name					{font-weight: bold;}
-.alert					{color: #d82020; text-shadow: 0 0 1px red;}
+.alert					{color: #d82020; text-shadow: 0 0 2px #d82020;}
 h1.alert, h2.alert		{color: #a4bad6;}
 
 .emote					{font-style: italic;}
@@ -324,12 +326,12 @@ h1.alert, h2.alert		{color: #a4bad6;}
 .disarm					{color: #990000;}
 .passive				{color: #660000;}
 
-.danger					{color: #c51e1e; text-shadow: 0 0 7px red;}
-.warning				{color: #c51e1e; text-shadow: 0 0 2px red}
-.boldannounce			{color: #c51e1e;	font-weight: bold; text-shadow: 0 0 1px red}
+.danger					{color: #c51e1e; text-shadow: 0 0 7px #c51e1e;}
+.warning				{color: #c51e1e; text-shadow: 0 0 4px #c51e1e;}
+.boldannounce			{color: #c51e1e;	font-weight: bold; text-shadow: 0 0 3px #c51e1e;}
 .rose					{color: #ff5050;}
-.info					{color: #6685f5;}
-.notice					{color: #6685f5;}
+.info					{color: #9696E4; text-shadow: 0 0 3px #9696E4;}
+.notice					{color: #7A8ABD; text-shadow: 0 0 4px #7A8ABD;}
 .alium					{color: #00ff00;}
 .cult					{color: #aa1c1c;}
 
@@ -344,7 +346,7 @@ h1.alert, h2.alert		{color: #a4bad6;}
 .solcom					{color: #22228b;}
 .vox					{color: #aa00aa;}
 .rough					{font-family: "Trebuchet MS", cursive, sans-serif;}
-.say_quote				{font-family: Georgia, Roboto Condensed, sans-serif;}
+.say_quote				{font-family: Roboto Condensed;}
 .terran					{color: #9c250b;}
 .moon					{color: #422863;}
 .spacer					{color: #ff6600;}
@@ -353,6 +355,28 @@ h1.alert, h2.alert		{color: #a4bad6;}
 
 .good                   {color: #4f7529; font-weight: bold;}
 .bad                    {color: #ee0000; font-weight: bold;}
+
+/* unrelated */
+.box {
+    display: inline-block;
+    min-width: 10px;
+    text-align: left;
+    border: 1px ridge #151319;
+    padding: 10px;
+    font-size: 15px;
+    vertical-align: middle;   
+    background: rgba(40, 40, 40, 0.5);
+    *zoom: 1;
+    *display: inline;
+}
+
+.firstdiv {
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    *zoom: 1;
+    *display: inline;
+}
 
 @keyframes hypnocolor {
 	0%		{color: #202020;}
@@ -381,3 +405,11 @@ h1.alert, h2.alert		{color: #a4bad6;}
 .ml-1 {margin-left: 1em;}
 .ml-2 {margin-left: 2em;}
 .ml-3 {margin-left: 3em;}
+
+.playerjoinbox {
+    border: 1px groove #5C41C6;
+	background: rgba(40, 40, 40, 0.3);
+	margin: 2px 8px;
+	padding: 8px 12px;
+	max-width: 550px;
+}

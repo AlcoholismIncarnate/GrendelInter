@@ -12,7 +12,15 @@
 	var/list/path_target = new/list()
 	var/list/path_idle = new/list()
 	var/list/objects
-	var/list/npc_attack_sound = list("yells!", "makes a scary noise!")
+	var/list/npc_attack_emote = list("yells!", "makes a scary noise!")
+	var/list/npc_attack_sound = list()
+	var/aggroed = TRUE
+
+
+	proc/aggro_npc()
+		if(!is_npc)
+			return
+		aggroed = TRUE
 
 
 	// this is called when the target is within one tile
@@ -21,7 +29,7 @@
 		var/obj/item/I = get_active_hand()
 		var/obj/item/II = get_inactive_hand()
 
-		if(target.stat != CONSCIOUS || target.is_npc)
+		if(target.stat != CONSCIOUS && prob(70) || target.is_npc)
 			target = null
 			return
 
@@ -57,7 +65,9 @@
 				if(check_1 || check_2)
 					get_attack_type(I, II, target)
 					if(prob(30))
-						custom_emote(2, pick(npc_attack_sound))
+						custom_emote(2, pick(npc_attack_emote))
+						if(npc_attack_sound.len)
+							playsound(src, pick(npc_attack_sound), 50, 0)
 						return
 					return
 				else
@@ -66,19 +76,25 @@
 					if(W)
 						W.attack_hand(src)
 						if(prob(30))
-							custom_emote(2, pick(npc_attack_sound))
+							custom_emote(2, pick(npc_attack_emote))
+							if(npc_attack_sound.len)
+								playsound(src, pick(npc_attack_sound), 50, 0)
 							return
 						return 1
 					else if(WW)
 						WW.attack_hand(src)
 						if(prob(30))
-							custom_emote(2, pick(npc_attack_sound))
+							custom_emote(2, pick(npc_attack_emote))
+							if(npc_attack_sound.len)
+								playsound(src, pick(npc_attack_sound), 50, 0)
 							return
 						return 1
 		else if(Adjacent(src.loc , target.loc,target))
 			get_attack_type(I, II, target)//target.attack_hand(src)
 			if(prob(30))
-				custom_emote(2, pick(npc_attack_sound))
+				custom_emote(2, pick(npc_attack_emote))
+				if(npc_attack_sound.len)
+					playsound(src, pick(npc_attack_sound), 50, 0)
 				return
 			// sometimes push the enemy
 			//if(prob(30))
@@ -89,37 +105,51 @@
 			var/obj/structure/window/WW = locate() in src.loc
 			if(W)
 				W.attack_hand(src)
-				if(prob(80))
-					custom_emote(2, pick(npc_attack_sound))
+				if(prob(30))
+					custom_emote(2, pick(npc_attack_emote))
+					if(npc_attack_sound.len)
+						playsound(src, pick(npc_attack_sound), 50, 0)
 					return
 				return 1
 			else if(WW)
 				WW.attack_hand(src)
-				if(prob(80))
-					custom_emote(2, pick(npc_attack_sound))
+				if(prob(30))
+					custom_emote(2, pick(npc_attack_emote))
+					if(npc_attack_sound.len)
+						playsound(src, pick(npc_attack_sound), 50, 0)
 					return
 				return 1
 
 	// main loop
 	proc/process()
+		set background = 1
+
+		if (stat)
+			walk_to(src, 0)
+			return 0
+
 
 		if(weakened || paralysis || handcuffed)
+			walk_to(src, 0)
 			return 1
 
 		if(resting)
 			mob_rest()
 			return 1
 
-		if(canmove)
+		if(!canmove)
 			return 1
 
 		setStaminaLoss(0)//So they don't wear themselves out.
+		if(!aggroed)//If they ain't angry then we don't want them searching for targets.
+			step(src, pick(GLOB.cardinal))
+			return 1
 
 		if(destroy_on_path())
 			return 1
 
-		if (!target)
-			// no target, look for a new one
+		if(!target)
+			// no target, and we're angery, look for a new one
 
 			// look for a target, taking into consideration their health
 			// and distance from the npc
@@ -169,7 +199,8 @@
 				if(distance <= 1)
 					if(attack_target())
 						return 1
-				if(step_towards_3d(src,target))
+				else
+					walk_to(src, target, 1, 5)
 					return 1
 			else
 				target = null
@@ -177,7 +208,6 @@
 
 		// if there is no target in range, roam randomly
 		else
-
 			frustration--
 			frustration = max(frustration, 0)
 
@@ -214,7 +244,9 @@
 				// since we only use such objects as the target
 				object_target:attack_hand(src)
 				if(prob(30))
-					custom_emote(2, "makes a scary noise!")			//But he will say one of the prepared words, or do an emote from say.dm
+					custom_emote(2, pick(npc_attack_emote))
+					if(npc_attack_sound.len)
+						playsound(src, pick(npc_attack_sound), 50, 0)			//But he will say one of the prepared words, or do an emote from say.dm
 					return
 				return 1
 
@@ -226,7 +258,9 @@
 					D.attack_hand(src)
 					object_target = D
 					if(prob(30))
-						custom_emote(2, "makes a scary noise!")			//But he will say one of the prepared words, or do an emote from say.dm
+						custom_emote(2, pick(npc_attack_emote))
+						if(npc_attack_sound.len)
+							playsound(src, pick(npc_attack_sound), 50, 0)			//But he will say one of the prepared words, or do an emote from say.dm
 						return
 					return 1
 		// before clawing through walls, try to find a direct path first
@@ -238,7 +272,9 @@
 						W.attack_hand(src)
 						object_target = W
 						if(prob(30))
-							custom_emote(2, "makes a scary noise!")			//But he will say one of the prepared words, or do an emote from say.dm
+							custom_emote(2, pick(npc_attack_emote))
+							if(npc_attack_sound.len)
+								playsound(src, pick(npc_attack_sound), 50, 0)			//But he will say one of the prepared words, or do an emote from say.dm
 							return
 						return 1
 		return 0
@@ -258,6 +294,7 @@
 		else
 			target.attack_hand(src)
 
+
 /mob/living/carbon/human/monkey/punpun/New()
 	..()
 	name = "Pun Pun"
@@ -274,54 +311,53 @@
 			C = new/obj/item/clothing/head/collectable/petehat(src)
 			equip_to_appropriate_slot(C)
 
-//AN ACTUAL HOSTILE NPC
-/mob/living/carbon/human/blank/New(var/new_loc)
-	..(new_loc, "Vat-Grown Human")
-
-/mob/living/carbon/human/blank/Initialize(var/new_loc)
-	. = ..()
-	var/number = "[pick(possible_changeling_IDs)]-[rand(1,30)]"
-	fully_replace_character_name("Subject [number]")
-	zone_sel = new /obj/screen/zone_sel( null )
-	zone_sel.selecting = "chest"
-	a_intent = I_HURT
-	stat = CONSCIOUS
-	var/decl/hierarchy/outfit/outfit = outfit_by_type(/decl/hierarchy/outfit/blank_subject)
-	outfit.equip(src)
-	var/obj/item/clothing/head/helmet/facecover/F = locate() in src
-	if(F)
-		F.name = "[F.name] ([number])"
-	is_npc = 1//Make sure their an NPC so they don't attack each other.
-	hand = 0//Make sure one of their hands is active.
-	put_in_hands(new /obj/item/weapon/crowbar)//Give them a weapon.
-	combat_mode = 1//Put them in combat mode.
-	generate_stats(STAT_DX)
-
-
-/mob/living/carbon/human/blank/ssd_check()
-	return FALSE
-
 /decl/hierarchy/outfit/blank_subject
 	name = "Test Subject"
 	uniform = /obj/item/clothing/under/color/white
 	shoes = /obj/item/clothing/shoes/white
 	head = /obj/item/clothing/head/helmet/facecover
-	//mask = /obj/item/clothing/mask/muzzle
-	//suit = /obj/item/clothing/suit/straight_jacket
+	mask = /obj/item/clothing/mask/muzzle
+	suit = /obj/item/clothing/suit/straight_jacket
 
 /decl/hierarchy/outfit/blank_subject/post_equip(mob/living/carbon/human/H)
+	..()
 	var/obj/item/clothing/under/color/white/C = locate() in H
 	if(C)
 		C.has_sensor  = SUIT_LOCKED_SENSORS
 		C.sensor_mode = SUIT_SENSOR_OFF
+
+/mob/living/carbon/human/blank/New(var/new_loc)
+	..(new_loc, "Vat-Grown Human")
+
+/mob/living/carbon/human/blank/Initialize()
+	. = ..()
+	var/number = "[pick(possible_changeling_IDs)]-[rand(1,30)]"
+	fully_replace_character_name("Subject [number]")
+	var/decl/hierarchy/outfit/outfit = outfit_by_type(/decl/hierarchy/outfit/blank_subject)
+	outfit.equip(src)
+	var/obj/item/clothing/head/helmet/facecover/F = locate() in src
+	if(F)
+		F.SetName("[F.name] ([number])")
+
+/mob/living/carbon/human/blank/ssd_check()
+	return FALSE
+
+//Hostile NPCs.
+
+/datum/species/human/raider/handle_npc(var/mob/living/carbon/human/H)//DON'T SPAWN TOO MANY OF THESE PLEASE!
+	H.process()
+
+/mob/living/carbon/human/raider/ssd_check()
+	return FALSE
 
 /mob/living/carbon/human/raider/Initialize(var/new_loc)
 	. = ..()
 	var/number = "[pick(possible_changeling_IDs)]-[rand(1,30)]"
 	fully_replace_character_name("raider [number]")
 	zone_sel = new /obj/screen/zone_sel( null )
-	zone_sel.selecting = "chest"
+	zone_sel.selecting = pick("chest", "head")
 	a_intent = I_HURT
+	aggroed = FALSE
 	var/decl/hierarchy/outfit/outfit = outfit_by_type(/decl/hierarchy/outfit/raider)
 	outfit.equip(src)
 	var/obj/item/clothing/head/helmet/facecover/F = locate() in src
@@ -332,9 +368,6 @@
 	put_in_hands(new /obj/item/weapon/material/sword/siegesword)//Give them a weapon.
 	combat_mode = 1//Put them in combat mode.
 	generate_stats(STAT_DX)
-
-/mob/living/carbon/human/raider/ssd_check()
-	return FALSE
 
 /decl/hierarchy/outfit/raider
 	name = "Raider"

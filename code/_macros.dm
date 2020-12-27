@@ -1,7 +1,6 @@
 #define PUBLIC_GAME_MODE SSticker.master_mode
 
 #define Clamp(value, low, high) (value <= low ? low : (value >= high ? high : value))
-#define CLAMP01(x) 		(clamp(x, 0, 1))
 
 #define get_turf(A) get_step(A,0)
 
@@ -47,6 +46,8 @@
 
 #define isghost(A) istype(A, /mob/observer/ghost)
 
+#define isvrhuman(A) (istype(A, /mob/living/carbon/human/vrhuman))
+
 #define isobserver(A) istype(A, /mob/observer)
 
 #define isorgan(A) istype(A, /obj/item/organ/external)
@@ -70,8 +71,6 @@
 #define isweakref(A) istype(A, /weakref)
 
 #define attack_animation(A) if(istype(A)) A.do_attack_animation(src)
-
-#define isairlock(A) istype(A, /obj/machinery/door/airlock)
 
 #define isopenspace(A) istype(A, /turf/simulated/open)
 
@@ -146,7 +145,7 @@
 // Sets L[A] to I, initalizing L if necessary
 #define LAZYSET(L, A, I) if(!L) { L = list(); } L[A] = I;
 // Reads I from L safely - Works with both associative and traditional lists.
-#define LAZYACCESS(L, I) (L ? (isnum(I) ? (I > 0 && I <= L.len ? L[I] : null) : L[I]) : null)
+#define LAZYACCESS(L, I) (L ? (isnum_safe(I) ? (I > 0 && I <= L.len ? L[I] : null) : L[I]) : null)
 // Reads the length of L, returning 0 if null
 #define LAZYLEN(L) length(L)
 // Safely checks if I is in L
@@ -167,7 +166,5 @@
 #define cast_new(type, num, args...) if((num) == 1) { new type(args) } else { for(var/i=0;i<(num),i++) { new type(args) } }
 
 #define FLAGS_EQUALS(flag, flags) ((flag & (flags)) == (flags))
-
-#define LAZYSET(L, A, I) if(!L) { L = list(); } L[A] = I;
 
 #define JOINTEXT(X) jointext(X, null)

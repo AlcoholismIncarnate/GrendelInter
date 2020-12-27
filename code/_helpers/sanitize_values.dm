@@ -3,7 +3,7 @@
 	return sanitize_integer(boolean, FALSE, TRUE, default)
 
 /proc/sanitize_integer(number, min=0, max=1, default=0)
-	if(isnum(number))
+	if(isnum_safe(number))
 		number = round(number)
 		if(min <= number && number <= max)
 			return number
@@ -21,7 +21,7 @@
 
 // Checks if the given input is a valid list index; returns true/false and doesn't change anything.
 /proc/is_valid_index(input, list/given_list)
-	if(!isnum(input))
+	if(!isnum_safe(input))
 		return FALSE
 	if(input != round(input))
 		return FALSE

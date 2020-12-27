@@ -932,7 +932,7 @@
 
 		var/mute_type = href_list["mute_type"]
 		if(istext(mute_type))	mute_type = text2num(mute_type)
-		if(!isnum(mute_type))	return
+		if(!isnum_safe(mute_type))	return
 
 		cmd_admin_mute(M, mute_type)
 
