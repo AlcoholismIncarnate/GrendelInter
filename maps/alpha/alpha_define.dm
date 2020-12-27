@@ -14,16 +14,16 @@
 
 	allowed_spawns = list("Arrivals Shuttle")
 
-	station_name  = "Stellar Fortress Alpha"
+	station_name  = "Resupply Fortress Alpha"
 	station_short = "Alpha"
-	dock_name     = "NAS Aeternum"
-	boss_name     = "King's Authority"
+	dock_name     = "VF-AD"
+	boss_name     = "Captain's Authority"
 	boss_short    = "The Authority"
-	company_name  = "The Kingdom of Jubilee"
-	company_short = "Kingdom"
+	company_name  = "Void Fleet Ishmael"
+	company_short = "Ishmael"
 	system_name = "Algol, Beta Persei"
 
-	map_admin_faxes = list("King's Authority Mail System")
+	map_admin_faxes = list("Void Fleet Communication System")
 
 	shuttle_docked_message = "The Spiteful has docked with the station. The nobles are awaited onboard."
 	shuttle_leaving_dock = "The Spiteful has departed from home dock."

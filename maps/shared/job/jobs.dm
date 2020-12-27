@@ -101,7 +101,7 @@
 						///datum/job/raider/leader
 						///datum/job/chaplain,
 						)
-
+/*
 /datum/map/alpha
 	allowed_jobs = list(
 						/datum/job/captain,
@@ -135,7 +135,7 @@
 						///datum/job/raider
 						///datum/job/raider/leader
 						///datum/job/chaplain,
-						)
+						)*/
 
 /datum/map/bearcat
 	allowed_jobs = list(
