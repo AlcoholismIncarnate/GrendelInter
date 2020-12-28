@@ -27,7 +27,7 @@
 //Cap
 /datum/job/soh_captain
 	title = "Bailiff"
-	supervisors = "your own wits, boredom, the Fleet"
+	supervisors = "your wits, wealth and Mother-Fleet"
 	selection_color = "#1C6060"
 	minimal_player_age = 0
 	economic_modifier = 10
@@ -79,7 +79,7 @@
 //HoS
 /datum/job/soh_hos
 	title = "Overseer"
-	supervisors = "the Fleet"
+	supervisors = "the Fleet and your own fat-fucking coffers"
 	department_flag = SEC
 	total_positions = 1
 	spawn_positions = 1
@@ -138,9 +138,32 @@
 		H.generate_skills(list("melee","ranged"))
 
 
-//Marine
+//Marines
 /datum/job/soh_mar
-	title = "Enforcer"
+	title = "Sergeant-at-Arms"
+	department = "Security"
+	department_flag = SEC
+	total_positions = 3
+	spawn_positions = 4
+	economic_modifier = 3
+	selection_color = "#601c1c"
+	sex_lock = MALE
+	access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks)
+	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_external_airlocks)
+	minimal_player_age = 0
+	outfit_type = /decl/hierarchy/outfit/job/security/peacekeeper
+
+	equip(var/mob/living/carbon/human/H)
+		..()
+		if(!H.religion_is_legal())//So that they can't be heretics.
+			H.religion = LEGAL_RELIGION
+		//H.add_stats(rand(11,16), rand(10,14), rand(7,10))
+		H.generate_stats(STAT_ST)
+		H.generate_skills(list("melee","ranged"))
+
+// Man-At-Arms
+/datum/job/soh_mar
+	title = "Man-at-Arms"
 	department = "Security"
 	department_flag = SEC
 	total_positions = 3
@@ -163,12 +186,61 @@
 
 
 /////////
-// Engineering
+//  Cult of Tech | Engineering
 /////////
-//UP
+// Techno-Cult Leader
+
 /datum/job/soh_engineer
-	title = "Upkeeper"
-	supervisors = "the Boatswain"
+	title = "Tech-Cult Voidlock"
+	supervisors = "the Voidlock"
+	selection_color = "#60601C"
+	minimal_player_age = 0
+	economic_modifier = 3
+	ideal_character_age = 21
+	total_positions = 3
+	spawn_positions = 3
+	//alt_titles = null
+	sex_lock = MALE
+	department_flag = ENG
+	outfit_type = /decl/hierarchy/outfit/job/dreyfus/inge/inge
+	access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics, access_emergency_storage, access_tcomsat)
+	minimal_access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics, access_emergency_storage, access_tcomsat)
+
+	equip(var/mob/living/carbon/human/H)
+		..()
+		//H.add_stats(rand(10,15), rand(7,10), rand(9,14))
+		H.generate_stats(STAT_IQ)
+		H.generate_skills(list("crafting","engineering"))
+
+
+
+// Techno-Cultist
+/datum/job/soh_engineer
+	title = "Tech-Cult Engineer"
+	supervisors = "the Voidlock"
+	selection_color = "#60601C"
+	minimal_player_age = 0
+	economic_modifier = 3
+	ideal_character_age = 21
+	total_positions = 3
+	spawn_positions = 3
+	//alt_titles = null
+	sex_lock = MALE
+	department_flag = ENG
+	outfit_type = /decl/hierarchy/outfit/job/dreyfus/inge/inge
+	access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics, access_emergency_storage, access_tcomsat)
+	minimal_access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics, access_emergency_storage, access_tcomsat)
+
+	equip(var/mob/living/carbon/human/H)
+		..()
+		//H.add_stats(rand(10,15), rand(7,10), rand(9,14))
+		H.generate_stats(STAT_IQ)
+		H.generate_skills(list("crafting","engineering"))
+
+// Techno-Cultist
+/datum/job/soh_engineer
+	title = "Tech-Cult Voidseer"
+	supervisors = "the Voidlock"
 	selection_color = "#60601C"
 	minimal_player_age = 0
 	economic_modifier = 3
@@ -190,13 +262,13 @@
 
 
 /////////
-// Supply
+// Commerce Guild | Supply
 /////////
-//QM
+// Commerce Guild Guildmaster
 /datum/job/soh_qm
 	selection_color = "#3d3315"
-	title = "Quartermaster General"
-	supervisors = "Your personal values"
+	title = "Guildmaster"
+	supervisors = "Personal Profit"
 	minimal_player_age = 0
 	economic_modifier = 3
 	ideal_character_age = 30
@@ -213,11 +285,11 @@
 		H.generate_skills(list("crafting","engineering", "mining"))
 
 
-//CT
+// Commerce Guild Merchant.
 /datum/job/soh_cargo_tech
 	selection_color = "#7c6a2e"
 	title = "Merchant"
-	supervisors = "the Quartermaster General"
+	supervisors = "the Guildmaster"
 	minimal_player_age = 0
 	economic_modifier = 2
 	ideal_character_age = 21
@@ -233,11 +305,11 @@
 		H.generate_skills(list("crafting","engineering", "mining"))
 
 
-//PL
+// Commerce Guild Enforcer
 /datum/job/soh_cargo_phys
 	selection_color = "#7c6a2e"
-	title = "Physical Labourer"
-	supervisors = "the Quartermaster General and Merchants"
+	title = "Enforcer"
+	supervisors = "the Guildmaster and Merchants"
 	minimal_player_age = 0
 	economic_modifier = 2
 	ideal_character_age = 21
@@ -299,13 +371,29 @@
 		H.generate_skills(list("medical","cleaning", "surgery"))
 		..()
 
+//Janitor
+/datum/job/soh_janitor
+	title = "Corpser"
+	supervisors = "the Sacred Oath"
+	minimal_player_age = 0
+	economic_modifier = 1
+	ideal_character_age = 21
+	total_positions = 2
+	spawn_positions = 2
+	selection_color = "#515151"
+	department_flag = SRV
+	equip(var/mob/living/carbon/human/H)
+		..()
+		//H.add_stats(rand(9,12), rand(9,12), rand(5,9))
+		H.generate_stats(STAT_HT)
+		H.generate_skills(list("medical","cleaning", "surgery"))
 
 /////////
 // Civil
 /////////
 //Brothel Keeper
 /datum/job/soh_bartender
-	title = "Brothel Keeper"
+	title = "Proprietor"
 	department = "Service"
 	department_flag = SRV
 	total_positions = 1
@@ -323,8 +411,8 @@
 
 //Entertainer
 /datum/job/soh_servant
-	title = "Servant"
-	supervisors = "the Brothel Keeper"
+	title = "Endebted"
+	supervisors = "the Proprietor"
 	minimal_player_age = 0
 	economic_modifier = 2
 	ideal_character_age = 21
@@ -339,28 +427,11 @@
 		H.generate_skills(list("cooking","melee"))
 
 
-//Janitor
-/datum/job/soh_janitor
-	title = "Janitor"
-	supervisors = "the Brothel Keeper"
-	minimal_player_age = 0
-	economic_modifier = 1
-	ideal_character_age = 21
-	total_positions = 2
-	spawn_positions = 2
-	selection_color = "#515151"
-	department_flag = SRV
-	equip(var/mob/living/carbon/human/H)
-		..()
-		//H.add_stats(rand(9,12), rand(9,12), rand(5,9))
-		H.generate_stats(STAT_HT)
-		H.generate_skills(list("cleaning"))
-
 
 //Chef
 /datum/job/soh_chef
-	title = "Chef"
-	supervisors = "the Brothel Keeper"
+	title = "Headsman"
+	supervisors = "Proprietor"
 	minimal_player_age = 0
 	economic_modifier = 2
 	ideal_character_age = 21
@@ -382,7 +453,7 @@
 //Vagrant
 /datum/job/soh_vagrant
 	title = "Vagrant"
-	supervisors = "Your morals"
+	supervisors = "Your own morals and belief in the Bailiff"
 	minimal_player_age = 0
 	economic_modifier = 1
 	ideal_character_age = 21
