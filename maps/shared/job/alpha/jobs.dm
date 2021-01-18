@@ -4,8 +4,11 @@
 						/datum/job/soh_hop,
 						/datum/job/soh_hos,
 						/datum/job/soh_exec,
-						/datum/job/soh_mar,
+						/datum/job/soh_saa,
+						/datum/job/soh_maa,
 						/datum/job/soh_engineer,
+						/datum/job/soh_voidkeeper,
+						/datum/job/soh_voidseer,
 						/datum/job/soh_qm,
 						/datum/job/soh_cargo_tech,
 						/datum/job/soh_cargo_phys,
@@ -139,7 +142,7 @@
 
 
 //Marines
-/datum/job/soh_mar
+/datum/job/soh_saa
 	title = "Sergeant-at-Arms"
 	department = "Security"
 	department_flag = SEC
@@ -162,7 +165,7 @@
 		H.generate_skills(list("melee","ranged"))
 
 // Man-At-Arms
-/datum/job/soh_mar
+/datum/job/soh_maa
 	title = "Man-at-Arms"
 	department = "Security"
 	department_flag = SEC
@@ -190,7 +193,7 @@
 /////////
 // Techno-Cult Leader
 
-/datum/job/soh_engineer
+/datum/job/soh_voidkeeper
 	title = "Tech-Cult Voidlock"
 	supervisors = "the Voidlock"
 	selection_color = "#60601C"
@@ -238,7 +241,7 @@
 		H.generate_skills(list("crafting","engineering"))
 
 // Techno-Cultist
-/datum/job/soh_engineer
+/datum/job/soh_voidseer
 	title = "Tech-Cult Voidseer"
 	supervisors = "the Voidlock"
 	selection_color = "#60601C"
