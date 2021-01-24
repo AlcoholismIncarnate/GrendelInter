@@ -388,9 +388,9 @@
 	ideal_character_age = 21
 	alt_titles = null
 	social_class = SOCIAL_CLASS_MIN
-	total_positions = 0
+	total_positions = -1
 	department_flag = CIV
-	spawn_positions = 1
+	spawn_positions = -1
 	selection_color = "#515151"
 	access = list(access_maint_tunnels)
 	equip(var/mob/living/carbon/human/H)

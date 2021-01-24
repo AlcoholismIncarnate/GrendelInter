@@ -18,6 +18,7 @@
 	//#include "job/jobs.dm"
 	#include "../shared/job/jobs.dm"
 	#include "../shared/job/alpha/jobs.dm"
+	#include "../shared/job/alpha/markers.dm"
 
 	#include "../../code/modules/lobby_music/soh.dm"
 
