@@ -421,6 +421,7 @@
 	ideal_character_age = 21
 	total_positions = 1
 	spawn_positions = 1
+	social_class = SOCIAL_CLASS_MIN
 	selection_color = "#515151"
 	minimal_access = list(access_bar, access_kitchen, access_hydroponics)
 	department_flag = SRV
